@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/multiselect/2.1.0/css/multi-select.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/multiselect/2.1.0/js/jquery.multi-select.min.js"></script>
+
+
+    <title>Atividades A&U</title>
+
+    <style>
+        body {
+            /* font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0; */
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 10px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #input_busca_palavra_chave:focus {
+            border-color: #14395d84 !important;
+            box-shadow: 0 0 0 0.2rem rgba(134, 182, 231, 0.452) !important;
+            outline: none;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar justify-content-center" style="border-bottom: 2px solid #c5c5c5; background-color: #041d36;" >
+            <h5 class="text-light my-2 text-center" >Atividades relacionadas à Arquitetura e Urbanismo</h5>
+        </nav>
+    </header>
+
+    <div class="d-flex mb-3 px-2 my-1" style="font-size: 13px;">
+        <h6 class="mr-2" style="font-size: 13px;">Opções de busca:</h6>
+        <a href="cnae_tabela.html" class="mr-2" style="font-size: 13px;">Tabela de CNAE</a>
+        <a href="cnae-accordion.html" style="font-size: 13px;">Seções de CNAE</a>
+    </div>
+
+
+
+
+    
+
+    <div class="container">
+
+
+
+        <h4 class="my-4" style="color: #041d36;">Tabela de atividades profissionais relacionadas à Arquitetura e Urbanismo.</h4>
+
+        <p class="mt-3" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Prezados,</p>
+
+        <p class="my-4" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Esta página tem como objetivo auxiliar na identificação de atividades relacionadas à  Arquitetura e Urbanismo de acordo com a e Classificação Nacional de Atividades Econômicas (CNAE) e Resolução nº 21 do CAU/BR, de 05 de abril de 2012.</p>
+
+
+        <div class="mb-0">
+            <button type="button" id="btn_busca_palavra_chave" class="btn btn-sm border btn-info mb-3" >Busca por palavra chave</button>
+            <button type="button" id="btn_busca_filtros" class="btn btn-sm border btn-info mb-3" >Busca por filtro</button>
+            <!-- style="background-color: #14385d; color: white;" -->
+        </div>
+
+        <!-- consulta por palavra chave -->
+        <div class="mb-3" id="div_busca_palavra_chave" style="display: none">
+            <h6 class="mt-2 mb-2">Digite o código CNAE, atividade ou campo de atuação:</h6>
+            <div class="" id="">
+                <input class="form-control bg-light" type="text" id="input_busca_palavra_chave" placeholder="Pesquise por Código CNAE, Atividade ou Campo de Atuação...">
+            </div>
+        </div>
+
+        <!-- consulta por filtro -->
+
+        <div class="mb-" id="div_busca_filtros" style="display: block">
+            
+            <h6 class="mt-2 mb-1" >Código CNAE:</h6>
+            <select class="form-control" id="input_relator" style="width: 475px;" onchange="inserirAssinaturas()">
+                <option value="">71.11-1</option>
+                <option value="">71.11-1</option>
+                <option value="">71.11-1</option>
+                <option value="">71.11-1</option>
+                <option value="">71.11-1</option>
+                <option value="">71.11-1</option>
+            </select>
+
+            <div class="border mb-2 mt-1 p-2 rounded">
+
+                <span>Itens selecionados: </span>
+                
+                <div class="d-flex">
+                                    
+                
+                
+                <div class="itens-selecionados mr-2 px-2 py-1 rounded" style="background-color: #cbcbcb52; font-size: 12px; align-content: center;">71.11-1
+                    <span class="remover-item">×</span>
+                </div>
+                <div class="itens-selecionados mr-2 px-2 py-1 rounded" style="background-color: #cbcbcb52; font-size: 12px; align-content: center;">Outros
+                    <span class="remover-item">×</span>
+                </div>
+                <div class="itens-selecionados mr-2 px-2 py-1 rounded" style="background-color: #cbcbcb52; font-size: 12px; align-content: center;">Teste
+                    <span class="remover-item">×</span>
+                </div>
+
+
+                </div>
+
+            
+            </div>
+    
+            <h6 class="mt-3 mb-1">Código da atividade na Resolução nº 21 do CAU/BR:</h6>
+            <select id="input_relator" class="form-control" style="width: 475px;" multiple="multiple">
+                <option value="71.11-1">71.11-1</option>
+                <option value="7.4">7.4. MAPA DE RISCO DAS CONDIÇÕES E MEIO AMBIENTE DE TRABALHO</option>
+                <option value="71.11-2">71.11-2</option>
+                <option value="7.5">7.5. ANÁLISE DE RISCOS</option>
+                <option value="71.11-3">71.11-3</option>
+                <option value="7.6">7.6. AVALIAÇÃO DE IMPACTO AMBIENTAL</option>
+            </select>
+
+            <div class="border mb-2 mt-1 p-2">oi</div>
+    
+            <h6 class="mt-3 mb-1" >Campo de Atuação:</h6>
+            <select class="form-control " id="input_relator" style="width: 475px;" onchange="inserirAssinaturas()">
+                <option value="">71.11-1</option>
+                <option value="">71.11-1</option>
+                <option value="">Topografia, elaboração e interpretação de levantamentos topográficos cadastrais para a realização de projetos de arquitetura, de urbanismo e de paisagismo</option>
+                <option value="">71.11-1</option>
+                <option value="">71.11-1</option>
+                <option value="">71.11-1</option>
+            </select>
+
+            <div class="border mb-2 mt-1 p-2">oi</div>
+   
+
+        </div>
+
+        <table class="table table-hover table-bordered" id="tabela_cnae">
+            <thead class="thead-light">
+                <tr>
+                    <th>Código CNAE</th>
+                    <th>Código da atividade na Resolução nº 21 do CAU/BR</th>
+                    <th>Campo de Atuação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="130eec80-4585-80bf-9a8b-d24376722895">
+                    <td id="" class="">111.111.-1</td>
+                    <td id="" class="">1.1.1. Levantamento TESTE 1</td>
+                    <td id="" class="">Arquitetura</td>
+                </tr>
+                <tr id="130eec80-4585-80d5-9b22-f2117ffbe97c">
+                    <td id="" class="">222.222-2</td>
+                    <td id="" class="">1.1.2. Projeto arquitetônico TESTE 2</td>
+                    <td id="" class="">Urbanismo</td>
+                </tr>
+                <tr id="130eec80-4585-80bf-9a8b-d24376722895">
+                    <td id="" class="">111.111.-1</td>
+                    <td id="" class="">1.1.1. Levantamento TESTE 1</td>
+                    <td id="" class="">Arquitetura</td>
+                </tr>
+                <tr id="130eec80-4585-80d5-9b22-f2117ffbe97c">
+                    <td id="" class="">222.222-2</td>
+                    <td id="" class="">1.1.2. Projeto arquitetônico TESTE 2</td>
+                    <td id="" class="">Urbanismo</td>
+                </tr>
+            </tbody>        
+        </table>
+    </div>
+
+    <div style="background-color: #041d36;">
+        <div class="text-light p-2 text-center"><strong>CAU/SP</strong></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script>
+             
+        // --------------- FILTRAR TABELA ---------------------------------------------------------------------------
+
+        // Função para remover acentos de uma string
+        function removeAccents(text) {
+            return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+    
+        // Função para filtrar a tabela com base no campo de busca
+        function filtrarTabelaPorBusca(input_busca_palavra_chave, tabela_cnae) {
+            const searchValue = removeAccents(document.getElementById(input_busca_palavra_chave).value.toLowerCase());
+            const searchWords = searchValue.split(' ').filter(Boolean);
+            const rows = document.querySelectorAll(`#${tabela_cnae} tbody tr`);
+    
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const rowText = Array.from(cells).map(cell => removeAccents(cell.textContent.toLowerCase())).join(' ');
+    
+                // Verifica se todas as palavras estão na linha
+                const match = searchWords.every(word => rowText.includes(word));
+                row.style.display = match ? '' : 'none';
+            });
+        }
+    
+        // Adiciona o evento 'keyup' ao campo de busca para chamar a função de filtragem
+        document.getElementById('input_busca_palavra_chave').addEventListener('keyup', function() {
+            filtrarTabelaPorBusca('input_busca_palavra_chave', 'tabela_cnae');
+        });
+    
+
+        // --------------- DIVS DE BUSCAS ---------------------------------------------------------------------------
+
+        // Exibe/esconde o campo de busca por palavra-chave ao clicar no botão
+        $('#btn_busca_palavra_chave').click(function() {
+            if($('#div_busca_palavra_chave').css('display') === 'none') {
+                $('#div_busca_palavra_chave').css('display', 'block');
+                $('#div_busca_filtros').css('display', 'none');
+            } else {
+                $('#div_busca_palavra_chave').css('display', 'none');
+            }
+        });
+    
+        // Exibe/esconde os filtros e limpa o campo de busca por palavra-chave
+        $('#btn_busca_filtros').click(function() {
+            if($('#div_busca_filtros').css('display') === 'none') {
+                $('#div_busca_filtros').css('display', 'block');
+                $('#div_busca_palavra_chave').css('display', 'none');
+                
+                // limpa a busca por palavra chave
+                $('#input_busca_palavra_chave').val('');
+                filtrarTabelaPorBusca('input_busca_palavra_chave', 'tabela_cnae')
+
+            } else {
+                $('#div_busca_filtros').css('display', 'none');
+            }
+        });
+
+
+
+        $(document).ready(function() {
+    $('#input_relator').multiSelect({
+      selectableOptgroup: true // Permite selecionar por grupos, se necessário
+    });
+  });
+
+    </script>
+</body>
+</html>

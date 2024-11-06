@@ -148,9 +148,18 @@
 
 <body>
 
-  <nav class="navbar justify-content-center" style="border-bottom: 2px solid #c5c5c5; background-color: #041d36;" >
-    <div class="text-light my-0 text-center" >Atividades relacionadas à Arquitetura e Urbanismo</div>
-  </nav>
+  <header>
+    <nav class="navbar justify-content-center" style="border-bottom: 2px solid #c5c5c5; background-color: #041d36;" >
+      <h5 class="text-light my-2 text-center" >Atividades relacionadas à Arquitetura e Urbanismo</h5>
+    </nav>
+  </header>
+
+
+  <div class="d-flex mb-3 px-2 my-1" style="font-size: 13px;">
+    <h6 class="me-2" style="font-size: 13px;">Opções de busca:</h6>
+    <a href="cnae_tabela.html" class="me-2" style="font-size: 13px; text-decoration: none;">Tabela de CNAE</a>
+    <a href="cnae-accordion.html" style="font-size: 13px; text-decoration: none;">Seções de CNAE</a>
+  </div>
 
 
   <!-- CNAE 1 -->
@@ -910,10 +919,13 @@
 
   <!-- https://cnae.ibge.gov.br/?view=subclasse&tipo=cnae&versao=10.1.0&subclasse=7111100&chave=arquitetura -->
 
-  <div style="background-color: #041d36;"><div class="text-light p-2 text-center">CAU/SP</h></div>
- 
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <div style="background-color: #041d36;">
+    <div class="text-light p-2 text-center"><strong>CAU/SP</strong></div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
   <script>
     // Seleciona todos os modelos (as divs que contêm os botões e detalhes)
