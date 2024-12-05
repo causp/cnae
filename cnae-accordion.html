@@ -1,2271 +1,2265 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Atividades A&U</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   
-  <title>Atividades A&U</title>
+    <style>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+      /* *,
+      ::before,
+      ::after {
+        box-sizing: border-box;
+      } */
+      /* 
+      html {
+        background-color: #CFD8DC;
+      } */
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
- 
-  <style>
+      body {
+        background-color: #f4f4f9;
+      }
 
-    /* *,
-    ::before,
-    ::after {
-      box-sizing: border-box;
-    } */
-    /* 
-    html {
-      background-color: #CFD8DC;
-    } */
+      .styled-details {
+        margin: 1rem auto;
+        padding: 0 1rem;
+        width: 50em;
+        max-width: calc(100% - 2rem);
+        position: relative;
+        border: 1px solid #78909C;
+        border-radius: 6px;
+        background-color: #ffffff;
+        color: #263238;
+        transition: background-color .15s;
+      }
 
-    body {
-      background-color: #f4f4f9;
-    }
+      .styled-details > :last-child {
+        margin-bottom: 1rem;
+      }
 
-    .styled-details {
-      margin: 1rem auto;
-      padding: 0 1rem;
-      width: 50em;
-      max-width: calc(100% - 2rem);
-      position: relative;
-      border: 1px solid #78909C;
-      border-radius: 6px;
-      background-color: #ffffff;
-      color: #263238;
-      transition: background-color .15s;
-    }
+      .styled-details::before {
+        width: 100%;
+        height: 100%;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: inherit;
+        opacity: .15;
+        box-shadow: 0 .25em .5em #263238;
+        pointer-events: none;
+        transition: opacity .2s;
+        z-index: -1;
+      }
 
-    .styled-details > :last-child {
-      margin-bottom: 1rem;
-    }
+      .styled-details[open] {
+        background-color: #FFF;
+      }
 
-    .styled-details::before {
-      width: 100%;
-      height: 100%;
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      border-radius: inherit;
-      opacity: .15;
-      box-shadow: 0 .25em .5em #263238;
-      pointer-events: none;
-      transition: opacity .2s;
-      z-index: -1;
-    }
+      .styled-details[open]::before {
+        opacity: .6;
+      }
 
-    .styled-details[open] {
-      background-color: #FFF;
-    }
+      .styled-summary {
+        padding: 0.75rem 2em 0.75rem 0;
+        display: block;
+        position: relative;
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer;
+      }
 
-    .styled-details[open]::before {
-      opacity: .6;
-    }
+      .styled-summary::before,
+      .styled-summary::after {
+        width: .75em;
+        height: 2px;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        content: '';
+        background-color: currentColor;
+        transform: translateY(-50%);
+        transition: transform .2s ease-in-out;
+      }
 
-    .styled-summary {
-      padding: 0.75rem 2em 0.75rem 0;
-      display: block;
-      position: relative;
-      font-size: 1em;
-      font-weight: bold;
-      cursor: pointer;
-    }
+      .styled-summary::after {
+        transform: translateY(-50%) rotate(90deg);
+      }
 
-    .styled-summary::before,
-    .styled-summary::after {
-      width: .75em;
-      height: 2px;
-      position: absolute;
-      top: 50%;
-      right: 0;
-      content: '';
-      background-color: currentColor;
-      transform: translateY(-50%);
-      transition: transform .2s ease-in-out;
-    }
+      .styled-details[open] .styled-summary::after {
+        transform: translateY(-50%) rotate(180deg);
+      }
 
-    .styled-summary::after {
-      transform: translateY(-50%) rotate(90deg);
-    }
+      .styled-summary::-webkit-details-marker {
+        display: none;
+      }
 
-    .styled-details[open] .styled-summary::after {
-      transform: translateY(-50%) rotate(180deg);
-    }
+      p {
+        margin: 0 0 1em;
+        line-height: 1.5;
+      }
 
-    .styled-summary::-webkit-details-marker {
-      display: none;
-    }
+      ul {
+        margin: 0 0 1em;
+        padding: 0 0 0 1em;
+      }
 
-    p {
-      margin: 0 0 1em;
-      line-height: 1.5;
-    }
+      li:not(:last-child) {
+        margin-bottom: 0.5em;
+      }
 
-    ul {
-      margin: 0 0 1em;
-      padding: 0 0 0 1em;
-    }
+      code {
+        padding: 0.2em;
+        border-radius: 3px;
+        background-color: #E0E0E0;
+      }
 
-    li:not(:last-child) {
-      margin-bottom: 0.5em;
-    }
+      pre > code {
+        display: block;
+        padding: 1em;
+        margin: 0;
+      } 
 
-    code {
-      padding: 0.2em;
-      border-radius: 3px;
-      background-color: #E0E0E0;
-    }
+      .sumary-custom {
+        font-size: 1rem; 
+        font-weight: bold; 
+        color: #203a45;
+      }
 
-    pre > code {
-      display: block;
-      padding: 1em;
-      margin: 0;
-    } 
+      .btn-expandir {
+        font-size: 0.85rem; 
+        font-weight: bold; 
+      }
 
-    .sumary-custom {
-      font-size: 1rem; 
-      font-weight: bold; 
-      color: #203a45;
-    }
+      .btn-recolher {
+        font-size: 0.85rem; 
+        font-weight: bold; 
+      }
 
-    .btn-expandir {
-      font-size: 0.85rem; 
-      font-weight: bold; 
-    }
+    </style>
 
-    .btn-recolher {
-      font-size: 0.85rem; 
-      font-weight: bold; 
-    }
+  </head>
 
-  </style>
+  <body>
 
-</head>
-
-<body>
-
-  <header>
-    <nav class="navbar justify-content-center" style="border-bottom: 2px solid #c5c5c5; background-color: #041d36;" >
-      <h5 class="text-light my-2 text-center" >Atividades relacionadas à Arquitetura e Urbanismo</h5>
-    </nav>
-  </header>
+    <header>
+      <nav class="navbar justify-content-center" style="border-bottom: 2px solid #c5c5c5; background-color: #041d36;" >
+        <h5 class="text-light my-2 text-center" >Atividades relacionadas à Arquitetura e Urbanismo</h5>
+      </nav>
+    </header>
 
 
-  <div class="d-flex mb-3 px-2 my-1" style="font-size: 13px;">
-    <h6 class="me-2" style="font-size: 13px;">Opções de busca:</h6>
-    <a href="cnae-tabela.html" class="me-2" style="font-size: 13px; text-decoration: none;">• Tabela de CNAE</a>
-    <a href="cnae-accordion.html" style="font-size: 13px; text-decoration: none;">• Seções de CNAE</a>
-  </div>
-
-
-  <!-- CNAE 1 -->
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">7111-1/00 - Serviços de arquitetura.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
+    <div class="d-flex mb-3 px-2 my-1" style="font-size: 13px;">
+      <h6 class="me-2" style="font-size: 13px;">Opções de busca:</h6>
+      <a href="cnae-tabela.html" class="me-2" style="font-size: 13px; text-decoration: none;">• Tabela de CNAE</a>
+      <a href="cnae-accordion.html" style="font-size: 13px; text-decoration: none;">• Seções de CNAE</a>
     </div>
 
 
-    <details class="my-1 p-2">
+    <!-- CNAE 1 -->
 
-      <summary class="sumary-custom" >Arquitetura e Urbanismo, concepção e execução de projetos.</summary>
+    <details class="styled-details">
 
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.1.1. Levantamento arquitetônico</p>
-      <p class="my-1" style="text-indent: 20px;">1.1.2. Projeto arquitetônico</p>
-      <p class="my-1" style="text-indent: 20px;">1.1.3. Projeto arquitetônico de reforma</p>
-      <p class="my-1" style="text-indent: 20px;">1.1.4. Projeto de edifício efêmero ou instalações efêmeras</p>
-      <p class="my-1" style="text-indent: 20px;">1.1.5. Projeto de monumento</p>
-      <p class="my-1" style="text-indent: 20px;">1.1.6. Projeto de adequação de acessibilidade</p>
-      <p class="my-1" style="text-indent: 20px;">1.1.7. As built</p>
+      <summary class="styled-summary">7111-1/00 - Serviços de arquitetura.</summary>
 
-    </details>
+      <hr class="mt-0">
 
-    <details class="my-1 p-2" >
+      <!-- botoes -->
+      <div class="d-flex">
 
-      <summary class="sumary-custom" >Conforto Ambiental.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.3.1. Projeto de adequação ergonômica</p>
-      <p class="my-1" style="text-indent: 20px;">1.3.2. Projeto de luminotecnia</p>
-
-    </details>
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Arquitetura de Interiores, concepção e execução de projetos.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.4.1. Projeto de arquitetura de interiores</p>
-      <p class="my-1" style="text-indent: 20px;">1.4.2. Projeto de reforma de interiores</p>
-      <p class="my-1" style="text-indent: 20px;">1.4.3. Projeto de mobiliário</p>
-
-    </details>
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Arquitetura Paisagística, concepção e execução de projetos.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.6.1. Levantamento paisagístico</p>
-      <p class="my-1" style="text-indent: 20px;">1.6.2. Prospecção e inventário</p>
-      <p class="my-1" style="text-indent: 20px;">1.6.3. Projeto de arquitetura paisagística</p>
-      <p class="my-1" style="text-indent: 20px;">1.6.4. Projeto de recuperação paisagística</p>
-      <p class="my-1" style="text-indent: 20px;">1.6.5. Plano de manejo e conservação paisagística</p>
-
-    </details>
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Relatórios Técnicos - Arquitetura e paisagismo.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.7.1. Memorial descritivo</p>
-      <p class="my-1" style="text-indent: 20px;">1.7.2. Caderno de especificações ou de encargos</p>
-      <p class="my-1" style="text-indent: 20px;">1.7.3. Orçamento</p>
-      <p class="my-1" style="text-indent: 20px;">1.7.4. Cronograma</p>
-      <p class="my-1" style="text-indent: 20px;">1.7.5. Estudo de viabilidade econômico-financeira</p>
-      <p class="my-1" style="text-indent: 20px;">1.7.6. Avaliação Pós ocupação</p>
-
-    </details>
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Urbanismo e Desenho Urbano.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.8.1. Levantamento cadastral</p>
-      <p class="my-1" style="text-indent: 20px;">1.8.2. Inventário urbano</p>
-      <p class="my-1" style="text-indent: 20px;">1.8.3. Projeto urbanístico</p>
-      <p class="my-1" style="text-indent: 20px;">1.8.4. Projeto de parcelamento do solo mediante loteamento</p>
-      <p class="my-1" style="text-indent: 20px;">1.8.5. Projeto de parcelamento do solo mediante desmembramento ou remembramento</p>
-      <p class="my-1" style="text-indent: 20px;">1.8.6. Projeto de regularização fundiária</p>
-      <p class="my-1" style="text-indent: 20px;">1.8.7. Projeto de sistema viário e acessibilidade</p>
-      <p class="my-1" style="text-indent: 20px;">1.8.8. Projeto especializado de tráfego e trânsito de veículos e sistemas de estacionamento</p>
-      <p class="my-1" style="text-indent: 20px;">1.8.9. Projeto de mobiliário urbano</p>
-      <p class="my-1" style="text-indent: 20px;">1.9.3. Projeto de comunicação visual urbanística</p>
-
-    </details>
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Relatórios Técnicos - Urbanismo.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.10.1. Memorial descritivo</p>
-      <p class="my-1" style="text-indent: 20px;">1.10.2. Caderno de especificações ou de encargos</p>
-      <p class="my-1" style="text-indent: 20px;">1.10.3. Orçamento</p>
-      <p class="my-1" style="text-indent: 20px;">1.10.4. Cronograma</p>
-      <p class="my-1" style="text-indent: 20px;">1.10.5. Estudo de viabilidade econômico-financeira</p>
-
-    </details>
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Planejamento Regional e Urbano.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">4.3.1. Levantamento físico-territorial, socioeconômico e ambiental</p>
-      <p class="my-1" style="text-indent: 20px;">4.3.2. Diagnóstico socioeconômico e ambiental</p>
-      <p class="my-1" style="text-indent: 20px;">4.3.3. Plano de desenvolvimento regional</p>
-      <p class="my-1" style="text-indent: 20px;">4.3.4. Plano de desenvolvimento metropolitano</p>
-      <p class="my-1" style="text-indent: 20px;">4.3.5. Plano de desenvolvimento integrado do turismo sustentável – PDITs</p>
-      <p class="my-1" style="text-indent: 20px;">4.3.6. Plano de desenvolvimento de região integrada – RIDE</p>
-      <p class="my-1" style="text-indent: 20px;">4.3.7. Plano diretor de mobilidade e transporte</p>
-      <p class="my-1" style="text-indent: 20px;">4.4.1. Levantamento ou inventário urbano</p>
-      <p class="my-1" style="text-indent: 20px;">4.4.2. Diagnóstico físico-territorial, socioeconômico e ambiental</p>
-      <p class="my-1" style="text-indent: 20px;">4.4.3. Planejamento setorial urbano</p>
-      <p class="my-1" style="text-indent: 20px;">4.4.4. Plano de intervenção local</p>
-      <p class="my-1" style="text-indent: 20px;">4.4.5. Planos diretores</p>
-      <p class="my-1" style="text-indent: 20px;">4.4.6. Plano de saneamento básico ambiental</p>
-      <p class="my-1" style="text-indent: 20px;">4.4.7. Plano diretor de drenagem pluvial</p>
-      <p class="my-1" style="text-indent: 20px;">4.4.8. Plano diretor de mobilidade e transporte</p>
-      <p class="my-1" style="text-indent: 20px;">4.4.9. Plano diretor de desenvolvimento integrado do turismo sustentável – PDITs</p>
-      <p class="my-1" style="text-indent: 20px;">4.4.10. Plano de habitação de interesse social</p>
-      <p class="my-1" style="text-indent: 20px;">4.4.11. Plano de regularização fundiária</p>
-      <p class="my-1" style="text-indent: 20px;">4.4.12. Análise e aplicação dos instrumentos do estatuto das cidades</p>
-      <p class="my-1" style="text-indent: 20px;">4.4.13. Plano ou traçado de cidade</p>
-      <p class="my-1" style="text-indent: 20px;">4.4.14. Plano de requalificação urbana</p>
-
-    </details>
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Gestão.</summary>
-      <p class="my-1" style="text-indent: 20px;">3.1. Coordenação e compatibilização de projetos</p>
-      <p class="my-1" style="text-indent: 20px;">3.2. <strong>Supervisão</strong> de obra ou <strong>serviço técnico</strong> <strong><u>(Somente supervisão de serviço técnico)</u></strong></p>
-      <p class="my-1" style="text-indent: 20px;">3.3. Direção ou condução de obra ou serviço técnico</p>
-      <p class="my-1" style="text-indent: 20px;">3.4. Gerenciamento de obra ou serviço técnico</p>
-      <p class="my-1" style="text-indent: 20px;">3.5. Acompanhamento de obra ou serviço técnico</p>
-      <p class="my-1" style="text-indent: 20px;">3.6. Fiscalização de obra ou serviço técnico</p>
-      <p class="my-1" style="text-indent: 20px;">3.7. Desempenho de cargo ou função técnica</p>
-
-    </details>
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Atividades Especiais.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">5.1. Assessoria</p>
-      <p class="my-1" style="text-indent: 20px;">5.2. Consultoria</p>
-
-    </details>
-
-
-    <!-- <h5>Notas Explicativas:</h5>
-
-    <p>
-      <h6>Esta subclasse compreende:</h6>
-      as atividades de consultoria e de prestação de serviços técnicos de arquitetura, tais como: <br>
-      - os projetos de arquitetura de prédios (projetos conceituais, projetos de detalhamento, etc.)<br>
-      - a supervisão da execução de projetos de arquitetura<br>
-      - os projetos para ordenação urbana e uso do solo<br>
-      - os projetos de arquitetura paisagística<br>
-
-      <h6 class="mt-2">Esta subclasse não compreende:</h6>
-      - os serviços de desenho técnico relacionados à arquitetura e engenharia (7119-7/03)<br>
-      - design e decoração de interiores (74.10-2 )<br>
-      - a atividade de decoração de interiores (7410-2/02)<br>
-      - as atividades paisagísticas como o plantio, tratamento e manutenção de jardins e gramados (8130-3/00)<br>
-    </p>
-
-    <hr> -->
-
-  </details>
-
-  <!-- ------------------------------------------------------------------------------ -->
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">7112-0/00 - Serviços de engenharia.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
       
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Arquitetura e Urbanismo, concepção e execução de projetos.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.1.1. Levantamento arquitetônico</p>
+        <p class="my-1" style="text-indent: 20px;">1.1.2. Projeto arquitetônico</p>
+        <p class="my-1" style="text-indent: 20px;">1.1.3. Projeto arquitetônico de reforma</p>
+        <p class="my-1" style="text-indent: 20px;">1.1.4. Projeto de edifício efêmero ou instalações efêmeras</p>
+        <p class="my-1" style="text-indent: 20px;">1.1.5. Projeto de monumento</p>
+        <p class="my-1" style="text-indent: 20px;">1.1.6. Projeto de adequação de acessibilidade</p>
+        <p class="my-1" style="text-indent: 20px;">1.1.7. As built</p>
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Conforto Ambiental.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.3.1. Projeto de adequação ergonômica</p>
+        <p class="my-1" style="text-indent: 20px;">1.3.2. Projeto de luminotecnia</p>
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Arquitetura de Interiores, concepção e execução de projetos.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.4.1. Projeto de arquitetura de interiores</p>
+        <p class="my-1" style="text-indent: 20px;">1.4.2. Projeto de reforma de interiores</p>
+        <p class="my-1" style="text-indent: 20px;">1.4.3. Projeto de mobiliário</p>
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Arquitetura Paisagística, concepção e execução de projetos.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.6.1. Levantamento paisagístico</p>
+        <p class="my-1" style="text-indent: 20px;">1.6.2. Prospecção e inventário</p>
+        <p class="my-1" style="text-indent: 20px;">1.6.3. Projeto de arquitetura paisagística</p>
+        <p class="my-1" style="text-indent: 20px;">1.6.4. Projeto de recuperação paisagística</p>
+        <p class="my-1" style="text-indent: 20px;">1.6.5. Plano de manejo e conservação paisagística</p>
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Relatórios Técnicos - Arquitetura e paisagismo.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.7.1. Memorial descritivo</p>
+        <p class="my-1" style="text-indent: 20px;">1.7.2. Caderno de especificações ou de encargos</p>
+        <p class="my-1" style="text-indent: 20px;">1.7.3. Orçamento</p>
+        <p class="my-1" style="text-indent: 20px;">1.7.4. Cronograma</p>
+        <p class="my-1" style="text-indent: 20px;">1.7.5. Estudo de viabilidade econômico-financeira</p>
+        <p class="my-1" style="text-indent: 20px;">1.7.6. Avaliação Pós ocupação</p>
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Urbanismo e Desenho Urbano.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.8.1. Levantamento cadastral</p>
+        <p class="my-1" style="text-indent: 20px;">1.8.2. Inventário urbano</p>
+        <p class="my-1" style="text-indent: 20px;">1.8.3. Projeto urbanístico</p>
+        <p class="my-1" style="text-indent: 20px;">1.8.4. Projeto de parcelamento do solo mediante loteamento</p>
+        <p class="my-1" style="text-indent: 20px;">1.8.5. Projeto de parcelamento do solo mediante desmembramento ou remembramento</p>
+        <p class="my-1" style="text-indent: 20px;">1.8.6. Projeto de regularização fundiária</p>
+        <p class="my-1" style="text-indent: 20px;">1.8.7. Projeto de sistema viário e acessibilidade</p>
+        <p class="my-1" style="text-indent: 20px;">1.8.8. Projeto especializado de tráfego e trânsito de veículos e sistemas de estacionamento</p>
+        <p class="my-1" style="text-indent: 20px;">1.8.9. Projeto de mobiliário urbano</p>
+        <p class="my-1" style="text-indent: 20px;">1.9.3. Projeto de comunicação visual urbanística</p>
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Relatórios Técnicos - Urbanismo.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.10.1. Memorial descritivo</p>
+        <p class="my-1" style="text-indent: 20px;">1.10.2. Caderno de especificações ou de encargos</p>
+        <p class="my-1" style="text-indent: 20px;">1.10.3. Orçamento</p>
+        <p class="my-1" style="text-indent: 20px;">1.10.4. Cronograma</p>
+        <p class="my-1" style="text-indent: 20px;">1.10.5. Estudo de viabilidade econômico-financeira</p>
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Planejamento Regional e Urbano.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">4.3.1. Levantamento físico-territorial, socioeconômico e ambiental</p>
+        <p class="my-1" style="text-indent: 20px;">4.3.2. Diagnóstico socioeconômico e ambiental</p>
+        <p class="my-1" style="text-indent: 20px;">4.3.3. Plano de desenvolvimento regional</p>
+        <p class="my-1" style="text-indent: 20px;">4.3.4. Plano de desenvolvimento metropolitano</p>
+        <p class="my-1" style="text-indent: 20px;">4.3.5. Plano de desenvolvimento integrado do turismo sustentável – PDITs</p>
+        <p class="my-1" style="text-indent: 20px;">4.3.6. Plano de desenvolvimento de região integrada – RIDE</p>
+        <p class="my-1" style="text-indent: 20px;">4.3.7. Plano diretor de mobilidade e transporte</p>
+        <p class="my-1" style="text-indent: 20px;">4.4.1. Levantamento ou inventário urbano</p>
+        <p class="my-1" style="text-indent: 20px;">4.4.2. Diagnóstico físico-territorial, socioeconômico e ambiental</p>
+        <p class="my-1" style="text-indent: 20px;">4.4.3. Planejamento setorial urbano</p>
+        <p class="my-1" style="text-indent: 20px;">4.4.4. Plano de intervenção local</p>
+        <p class="my-1" style="text-indent: 20px;">4.4.5. Planos diretores</p>
+        <p class="my-1" style="text-indent: 20px;">4.4.6. Plano de saneamento básico ambiental</p>
+        <p class="my-1" style="text-indent: 20px;">4.4.7. Plano diretor de drenagem pluvial</p>
+        <p class="my-1" style="text-indent: 20px;">4.4.8. Plano diretor de mobilidade e transporte</p>
+        <p class="my-1" style="text-indent: 20px;">4.4.9. Plano diretor de desenvolvimento integrado do turismo sustentável – PDITs</p>
+        <p class="my-1" style="text-indent: 20px;">4.4.10. Plano de habitação de interesse social</p>
+        <p class="my-1" style="text-indent: 20px;">4.4.11. Plano de regularização fundiária</p>
+        <p class="my-1" style="text-indent: 20px;">4.4.12. Análise e aplicação dos instrumentos do estatuto das cidades</p>
+        <p class="my-1" style="text-indent: 20px;">4.4.13. Plano ou traçado de cidade</p>
+        <p class="my-1" style="text-indent: 20px;">4.4.14. Plano de requalificação urbana</p>
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Gestão.</summary>
+        <p class="my-1" style="text-indent: 20px;">3.1. Coordenação e compatibilização de projetos</p>
+        <p class="my-1" style="text-indent: 20px;">3.2. <strong>Supervisão  de</strong> obra ou <strong>serviço técnico</strong> <strong><u>(refere-se à supervisão de serviço técnico)</u></strong></p>
+        <p class="my-1" style="text-indent: 20px;">3.3. <strong>Direção ou condução de</strong> obra ou  <strong>serviço técnico</strong> <strong><u>(refere-se à direção ou condução de serviço técnico)</u></strong></p>
+        <p class="my-1" style="text-indent: 20px;">3.4. <strong>Gerenciamento de</strong> obra ou  <strong>serviço técnico</strong> <strong><u>(refere-se à gerenciamento de serviço técnico)</u></strong></p>
+        <p class="my-1" style="text-indent: 20px;">3.5. <strong>Acompanhamento de</strong> obra ou  <strong>serviço técnico</strong> <strong><u>(refere-se à acompanhamento de serviço técnico)</u></strong></p>
+        <p class="my-1" style="text-indent: 20px;">3.6. <strong>Fiscalização de</strong> obra ou  <strong>serviço técnico</strong> <strong><u>(refere-se à fiscalização de serviço técnico)</u></strong></p>
+        <p class="my-1" style="text-indent: 20px;">3.7. Desempenho de cargo ou função técnica</p>
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Atividades Especiais.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">5.1. Assessoria</p>
+        <p class="my-1" style="text-indent: 20px;">5.2. Consultoria</p>
+
+      </details>
+
+
+      <!-- <h5>Notas Explicativas:</h5>
+
+      <p>
+        <h6>Esta subclasse compreende:</h6>
+        as atividades de consultoria e de prestação de serviços técnicos de arquitetura, tais como: <br>
+        - os projetos de arquitetura de prédios (projetos conceituais, projetos de detalhamento, etc.)<br>
+        - a supervisão da execução de projetos de arquitetura<br>
+        - os projetos para ordenação urbana e uso do solo<br>
+        - os projetos de arquitetura paisagística<br>
+
+        <h6 class="mt-2">Esta subclasse não compreende:</h6>
+        - os serviços de desenho técnico relacionados à arquitetura e engenharia (7119-7/03)<br>
+        - design e decoração de interiores (74.10-2 )<br>
+        - a atividade de decoração de interiores (7410-2/02)<br>
+        - as atividades paisagísticas como o plantio, tratamento e manutenção de jardins e gramados (8130-3/00)<br>
+      </p>
+
+      <hr> -->
+
+    </details>
+
+    <!-- ------------------------------------------------------------------------------ -->
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">7112-0/00 - Serviços de engenharia.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Sistemas construtivos e estruturais.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.2.1. Projeto De Estrutura De Madeira</p>
+        <p class="my-1" style="text-indent: 20px;">1.2.2. Projeto De Estrutura De Concreto</p>
+        <p class="my-1" style="text-indent: 20px;">1.2.3. Projeto De Estrutura Pré-Fabricada</p>
+        <p class="my-1" style="text-indent: 20px;">1.2.4. Projeto De Estrutura Metálica</p>
+        <p class="my-1" style="text-indent: 20px;">1.2.5. Projeto De Estruturas Mistas</p>
+        <p class="my-1" style="text-indent: 20px;">1.2.6. Projeto De Outras Estruturas</p>
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Conforto Ambiental.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.3.3. Projeto De Condicionamento Acústico</p>
+        <p class="my-1" style="text-indent: 20px;">1.3.4. Projeto De Sonorização</p>
+        <p class="my-1" style="text-indent: 20px;">1.3.5. Projeto De Ventilação, Exaustão E Climatização</p>
+        <p class="my-1" style="text-indent: 20px;">1.3.6. Projeto De Certificação Ambiental</p>
+
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Instalações e equipamentos referentes a arquitetura.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.5.1. Projeto de instalações hidrossanitárias prediais</p>
+        <p class="my-1" style="text-indent: 20px;">1.5.2. Projeto De Instalações Prediais De Águas Pluviais</p>
+        <p class="my-1" style="text-indent: 20px;">1.5.3. Projeto De Instalações Prediais De Gás Canalizado</p>
+        <p class="my-1" style="text-indent: 20px;">1.5.4. Projeto De Instalações Prediais De Gases Medicinais</p>
+        <p class="my-1" style="text-indent: 20px;">1.5.5. Projeto De Instalações Prediais De Prevenção E Combate A Incêndio</p>
+        <p class="my-1" style="text-indent: 20px;">1.5.6. Projeto De Sistemas Prediais De Proteção Contra Incêndios E Catástrofes</p>
+        <p class="my-1" style="text-indent: 20px;">1.5.7. Projeto De Instalações Elétricas Prediais De Baixa Tensão</p>
+        <p class="my-1" style="text-indent: 20px;">1.5.8. Projeto De Instalações Telefônicas Prediais</p>
+        <p class="my-1" style="text-indent: 20px;">1.5.9. Projeto De Instalações Prediais De TV</p>
+        <p class="my-1" style="text-indent: 20px;">1.5.11. Projeto De Cabeamento Estruturado, Automação E Lógica Em Edifícios</p>
+
+
+
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Instalações e equipamentos referentes a urbanismo.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.9.1. Projeto de movimentação de terra, drenagem e pavimentação</p>
+        <p class="my-1" style="text-indent: 20px;">1.9.2. Projeto de sistema de iluminação pública</p>
+        <p class="my-1" style="text-indent: 20px;">1.9.5. Projeto de sistema de coleta de resíduos sólidos</p>
+        <p class="my-1" style="text-indent: 20px;">1.9.4. Projeto de sinalização viária</p>  
+
+      </details>
+
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Meio ambiente.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">4.2.1. Zoneamento Geoambiental</p>
+        <p class="my-1" style="text-indent: 20px;">4.2.2. Diagnóstico Ambiental</p>
+        <p class="my-1" style="text-indent: 20px;">4.2.3. Relatório Ambiental Simplificado – RAS</p>
+        <p class="my-1" style="text-indent: 20px;">4.2.4. Estudo De Impacto De Vizinhança – EIV</p>
+        <p class="my-1" style="text-indent: 20px;">4.2.5. Estudo De Viabilidade Ambiental – EVA</p>
+        <p class="my-1" style="text-indent: 20px;">4.2.6. Estudo De Impacto Ambiental – Relatório De Impacto No Meio Ambiente – EIA – RIMA</p>
+        <p class="my-1" style="text-indent: 20px;">4.2.7. Estudo De Impacto Ambiental Complementar – EIAc</p>
+        <p class="my-1" style="text-indent: 20px;">4.2.8. Plano De Monitoramento Ambiental</p>
+        <p class="my-1" style="text-indent: 20px;">4.2.9. Plano De Controle Ambiental – PCA</p>
+        <p class="my-1" style="text-indent: 20px;">4.2.10. Relatório De Controle Ambiental – RCA</p>
+        <p class="my-1" style="text-indent: 20px;">4.2.11. Plano De Manejo Ambiental</p>
+        <p class="my-1" style="text-indent: 20px;">4.2.12. Plano De Recuperação De Áreas Degradadas – PRAD</p>
+        <p class="my-1" style="text-indent: 20px;">4.2.13. Plano De Gerenciamento De Resíduos Sólidos – PGRS</p>
+        
+
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Gestão.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">3.2. <strong>Supervisão  de obra</strong> ou serviço técnico <strong><u>(refere-se à supervisão de obra)</u></strong></p>
+        <p class="my-1" style="text-indent: 20px;">3.3. <strong>Direção ou condução  de obra</strong> ou serviço técnico <strong><u>(refere-se à direção ou condução de obra)</u></strong></p>
+        <p class="my-1" style="text-indent: 20px;">3.5. <strong>Acompanhamento  de obra</strong> ou serviço técnico <strong><u>(refere-se à acompanhamento de obra)</u></strong></p>
+        <p class="my-1" style="text-indent: 20px;">3.6. <strong>Fiscalização  de obra</strong> ou serviço técnico <strong><u>(refere-se à fiscalização de obra)</u></strong></p>     
+
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Atividades Especiais.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">5.3. Assistência Técnica</p>
+        <p class="my-1" style="text-indent: 20px;">5.4. Vistoria</p>
+        <p class="my-1" style="text-indent: 20px;">5.5. Perícia</p>
+        <p class="my-1" style="text-indent: 20px;">5.6. Avaliação</p>
+        <p class="my-1" style="text-indent: 20px;">5.7. Laudo Técnico</p>
+        <p class="my-1" style="text-indent: 20px;">5.8. Parecer Técnico</p>
+        <p class="my-1" style="text-indent: 20px;">5.9. Auditoria</p>
+        <p class="my-1" style="text-indent: 20px;">5.10. Arbitragem</p>
+        <p class="my-1" style="text-indent: 20px;">5.11. Mensuração</p>
+
+      </details>
+
+
+    </details>
+
+    <!-- ------------------------------------------------------------------------------ -->
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">7119-7/01 - Serviços de cartografia, topografia e geodésia.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Georreferenciamento e Topografia.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">4.1.3. Georreferenciamento</p>
+        <p class="my-1" style="text-indent: 20px;">4.1.4. Levantamento Topográfico Planialtimétrico</p>
+        <p class="my-1" style="text-indent: 20px;">4.1.5. Análise De Dados Georreferenciados E Topográficos</p>
+        <p class="my-1" style="text-indent: 20px;">4.1.6. Cadastro Técnico Multifinalitário</p>
+        <p class="my-1" style="text-indent: 20px;">4.1.7. Elaboração De Sistemas De Informações Geográficas – SIG</p>
+
+      </details>
+
+
+    </details>
+
+    <!-- ------------------------------------------------------------------------------ -->
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">7119-7/03 - Serviços de desenho técnico relacionados à arquitetura e engenharia.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+      
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Topografia, elaboração e interpretação de levantamentos topográficos cadastrais para a
+          realização de projetos de arquitetura, de urbanismo e de paisagismo.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.1.1. Levantamento Arquitetônico</p>
+        <p class="my-1" style="text-indent: 20px;">1.1.7. As Built</p>
+        <p class="my-1" style="text-indent: 20px;">1.6.1. Levantamento Paisagístico</p>
+        <p class="my-1" style="text-indent: 20px;">1.8.1. Levantamento Cadastral</p>
+
+      </details>
+
+    </details>
+
+    <!-- ------------------------------------------------------------------------------ -->
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">7119-7/04 - Serviços de perícia técnica relacionados à segurança do trabalho.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Engenharia de segurança do trabalho.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">7.1.1. Plano Da Gestão De Segurança Do Trabalho</p>
+        <p class="my-1" style="text-indent: 20px;">7.1.3. Plano De Emergência</p>
+        <p class="my-1" style="text-indent: 20px;">7.1.4. Plano De Prevenção De Catástrofes</p>
+        <p class="my-1" style="text-indent: 20px;">7.1.5. Plano De Contingência</p>
+        
+        <p class="my-1" style="text-indent: 20px;">7.2.1. Programa De Condições E Meio Ambiente De Trabalho Na Indústria Da Construção – PCMAT</p>
+        <p class="my-1" style="text-indent: 20px;">7.2.3. Programa De Proteção Respiratória</p>
+        <p class="my-1" style="text-indent: 20px;">7.2.4. Programa De Conservação Auditiva</p>
+        <p class="my-1" style="text-indent: 20px;">7.2.5. Programa De Prevenção Da Exposição Ocupacional Ao Benzeno – PPEOB</p>
+        
+        <p class="my-1" style="text-indent: 20px;">7.3.1. Riscos Químicos</p>
+        <p class="my-1" style="text-indent: 20px;">7.3.2. Riscos Físicos</p>
+        <p class="my-1" style="text-indent: 20px;">7.3.3. Riscos Biológicos</p>
+        <p class="my-1" style="text-indent: 20px;">7.3.4. Riscos Ambientais</p>
+        <p class="my-1" style="text-indent: 20px;">7.3.5. Riscos Ergonômicos</p>
+        
+        <p class="my-1" style="text-indent: 20px;">7.4. Mapa De Risco Das Condições E Meio Ambiente De Trabalho</p>
+        
+        <p class="my-1" style="text-indent: 20px;">7.5.1. Vistoria</p>
+        <p class="my-1" style="text-indent: 20px;">7.5.2. Perícia</p>
+        <p class="my-1" style="text-indent: 20px;">7.5.3. Avaliação</p>
+        <p class="my-1" style="text-indent: 20px;">7.5.4. Laudo</p>
+        
+        <p class="my-1" style="text-indent: 20px;">7.6. Laudo De Inspeção Sobre Atividades Insalubres</p>
+      
+        
+        <p class="my-1" style="text-indent: 20px;">7.8.1. Equipamentos De Proteção Individual – EPI</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.2. Equipamentos De Proteção Coletiva</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.3. Medidas De Proteção Coletiva</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.4. Avaliação De Atividades Perigosas</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.5. Medidas De Proteção Contra Incêndios E Catástrofes</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.6. Instalações De Segurança Do Trabalho</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.7. Condições De Trabalho</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.8. Sinalização De Segurança</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.9. Dispositivos De Segurança</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.10. Segurança Em Instalações Elétricas</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.11. Segurança Para Operação De Elevadores E Guindastes</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.12. Projeto De Sistemas De Segurança</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.13. Projeto De Proteção Contra Incêndios</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.14. Acompanhamento Da Execução De Obras E Serviços Relacionados À Segurança Do Trabalho</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.15. Assessoria</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.16. Inspeção E Controle</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.17. Especificação</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.18. Orientação Técnica</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.19. Fiscalização</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.20. Supervisão</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.21. Coordenação</p>
+        <p class="my-1" style="text-indent: 20px;">7.8.22. Gerenciamento</p>
+
+      </details>
+
+
+    </details>
+
+    <!-- ------------------------------------------------------------------------------ -->
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">7119-7/99 - Atividades técnicas relacionadas à engenharia e arquitetura não especificadas anteriormente.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Topografia, elaboração e interpretação de levantamentos topográficos cadastrais para a
+          realização de projetos de arquitetura, de urbanismo e de paisagismo.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">4.1.1. Levantamento Topográfico Por Imagem</p>
+        <p class="my-1" style="text-indent: 20px;">4.1.2. Fotointerpretação</p>
+        
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">7210-0/00 - Pesquisa e desenvolvimento experimental em ciências físicas e naturais.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Tecnologia e resistência dos materiais, dos elementos e produtos de construção, patologias e
+          recuperações.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">6.2. Pesquisa</p>
+        <p class="my-1" style="text-indent: 20px;">6.3.1. Pesquisa e inovação tecnológica</p>
+        <p class="my-1" style="text-indent: 20px;">6.3.2. Pesquisa aplicada em tecnologia da construção</p>
+        <p class="my-1" style="text-indent: 20px;">6.3.3. Pesquisa de elemento ou produto para a construção</p>
+        <p class="my-1" style="text-indent: 20px;">6.3.4. Estudo ou pesquisa de resistência dos materiais</p>
+        <p class="my-1" style="text-indent: 20px;">6.3.5. Estudo e correção de patologias da construção</p>
+        <p class="my-1" style="text-indent: 20px;">6.3.6. Padronização de produto para a construção</p>
+        <p class="my-1" style="text-indent: 20px;">6.3.7. Ensaio de materiais</p>
+        <p class="my-1" style="text-indent: 20px;">6.3.8. Controle de qualidade de construção ou produto</p>     
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">7410-2/02 - Design de Interiores.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Arquitetura de Interiores, concepção e execução de projetos.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+
+        <p class="my-1" style="text-indent: 20px;">1.4.1. Projeto de arquitetura de interiores</p>
+        <p class="my-1" style="text-indent: 20px;">1.4.2. Projeto de reforma de interiores      </p>   
+
+
+      </details>
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Conforto Ambiental.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.3.2. Projeto de luminotecnia</p>
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">7410-2/03 - Design de produtos.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Arquitetura de interiores.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">1.4.3. Projeto de mobiliário</p>
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">7410-2/99 - Atividades de design não especificadas anteriormente.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >INSTALAÇÕES E EQUIPAMENTOS REFERENTES À ARQUITETURA.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">1.5.10. Projeto de comunicação visual para edificações</p>
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">7490-1/99 - Atividades profissionais, cientificas e técnicas não especificadas anteriormente.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Engenharia de segurança do trabalho.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">7.1.2. Programa de Gerenciamento de Riscos – PGR</p>
+        <p class="my-1" style="text-indent: 20px;">7.2.2. Programa de Prevenção de Riscos Ambientais – PPRA</p>   
+        <p class="my-1" style="text-indent: 20px;">7.7. LAUDO TÉCNICO DE CONDIÇÕES DO TRABALHO - LTCAT</p>
+
+
+      </details>
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Conforto Ambiental.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.3.1. Execução de adequação ergonômica</p>
+
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4120-4/00 - Construção de edifícios.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução - Arquitetura das edificações.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.1.1. Execução de obra</p>
+        <p class="my-1" style="text-indent: 20px;">2.1.2. Execução de reforma de edificação</p>
+        <p class="my-1" style="text-indent: 20px;">2.1.3. Execução de edifício efêmero ou instalações efêmeras</p>
+        <p class="my-1" style="text-indent: 20px;">2.1.4. Execução de monumento</p>
+        <p class="my-1" style="text-indent: 20px;">2.1.5. Execução de adequação de acessibilidade</p>
+
+      </details>
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução -Sistemas Construtivos e Estruturais.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.2.1. Execução de estrutura de madeira</p>
+        <p class="my-1" style="text-indent: 20px;">2.2.2. Execução de estrutura de concreto</p>
+        <p class="my-1" style="text-indent: 20px;">2.2.3. Execução de estrutura pré-fabricada</p>
+        <p class="my-1" style="text-indent: 20px;">2.2.5. Execução de estruturas mistas</p>
+        <p class="my-1" style="text-indent: 20px;">2.2.6. Execução de outras estruturas</p>
+
+        
+
+      </details>
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução - Arquitetura de interiores.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.4.1. Execução de obra de interiores</p>
+        <p class="my-1" style="text-indent: 20px;">2.4.2. Execução de reforma de interiores</p>
+
+
+      </details>
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Patrimônio arquitetônico, urbanistico e paisagistico.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.9.1. Preservação de edificações de interesse histórico-cultural</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.1.1. Execução de obra de preservação do patrimônio edificado</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.1.2. Execução de obra de consolidação</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.1.3. Execução de obra de estabilização</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.1.4. Execução de obra de reutilização</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.1.5. Execução de obra de requalificação</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.1.6. Execução de obra de conversão funcional</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.1.7. Execução de obra de restauração</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.1.8. Execução de obra de conservação preventiva</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.2.3. Execução de obra de requalificação habitacional</p>
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4213-8/00 - Obras de urbanização-Ruas, praças e calçadas.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução - Urbanismo e Desenho urbano.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.6.1. Execução de obra de arquitetura paisagística</p>
+        <p class="my-1" style="text-indent: 20px;">2.7.1. Execução de obra urbanística</p>
+        <p class="my-1" style="text-indent: 20px;">2.7.4. Implantação de sistema especializado de tráfego e trânsito de veículos e sistemas de estacionamento</p>
+        <p class="my-1" style="text-indent: 20px;">2.7.5. Execução de sistema viário e acessibilidade</p>
+      
+
+      </details>
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Instalações e equipamentos referentes ao urbanismo.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.7.6. Execução de mobiliário urbano</p>
+        <p class="my-1" style="text-indent: 20px;">2.8.1. Execução de terraplenagem, drenagem e pavimentação</p>
+
+
+      </details>
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução - Patrimônio arquitetônico, urbanistico e paisagistico.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.8.4. Execução de obra de sinalização viária</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.2. Preservação de sítios histórico-culturais</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.2.1. Execução de obra urbanística setorial</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.2.2. Execução de obra de requalificação de espaços públicos</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.2.4. Execução de obra de reciclagem da infraestrutura</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.3.1. Execução de obra de restauração paisagística</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.3.2. Execução de requalificação paisagística</p>
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4292-8/01 - Montagem de estruturas metálicas.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Sitemas construtivos e estruturais.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.2.4. Execução de estrutura metálica</p>
+
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4299-5/99 - Obras de engenharia civil não especificadas anteriormente.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Urbanismo e Desenho urbano.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.7.2. Execução de obra de parcelamento do solo mediante loteamento</p>
+        <p class="my-1" style="text-indent: 20px;">2.7.3. Execução de obra de parcelamento do solo mediante desmembramento ou remembramento</p>   
+
+        
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4311-8/01 - Demolição de edifícios e outras estruturas.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução - Arquitetura das edificações.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.1.1. Execução de obra</p> 
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4311-8/02 - Preparação de canteiro e limpeza de terreno.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução - Arquitetura das edificações.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.1.1. Execução de obra</p>
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4312-6/00 - Perfurações e sondagens.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Atividades Especiais.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">5.7. LAUDO TÉCNICO</p>
+
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4313-4/00 - Obras de terraplenagem.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Instalações e equipamentos referente a arquitetura.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.8.1. Execução de terraplenagem, drenagem e pavimentação</p>
+
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4319-0/00 - Serviços de preparação do terreno não especificados anteriormente.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Instalações e equipamentos referente a arquitetura.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.8.1. Execução de terraplenagem, drenagem e pavimentação</p>
+
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4321-5/00 - Instalação e manutenção elétrica.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução - Conforto ambiental.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.3.2. Execução de instalações de luminotecnia</p>
+        <p class="my-1" style="text-indent: 20px;">2.3.4. Execução de instalações de sonorização</p>
+
+        
+
+      </details>
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução - Instalações e equipamentos referente a arquitetura.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.5.6. Execução de sistemas prediais de proteção contra incêndios e catástrofes</p>
+        <p class="my-1" style="text-indent: 20px;">2.5.7. Execução de instalações elétricas prediais de baixa tensão</p>
+        <p class="my-1" style="text-indent: 20px;">2.5.8. Execução de instalações telefônicas prediais</p>
+        <p class="my-1" style="text-indent: 20px;">2.5.9. Execução de instalações prediais de TV</p>
+        <p class="my-1" style="text-indent: 20px;">2.5.11. Execução de cabeamento estruturado, automação e lógica em edifícios</p>
+
+      </details>
+
+
+    </details>
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4322-3/01 - Instalações hidráulicas, sanitárias e de gás.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Instalações e equipamentos referente a arquitetura.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.5.1. Execução de instalações hidrossanitárias prediais</p>
+        <p class="my-1" style="text-indent: 20px;">2.5.2. Execução de instalações prediais de águas pluviais</p>
+        <p class="my-1" style="text-indent: 20px;">2.5.3. Execução de instalações prediais de gás canalizado</p>
+        <p class="my-1" style="text-indent: 20px;">2.5.4. Execução de instalações prediais de gases medicinais</p>
+        
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4322-3/02 - Instalação e manutenção de sistemas centrais de ar condicionado, de ventilação e refrigeração.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Conforto ambiental.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.3.5. Execução de instalações de ventilação, exaustão e climatização</p>
+
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4322-3/03 - Instalações de sistema de prevenção contra incêndio.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Instalações e equipamentos referente a arquitetura.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.5.5. Execução de instalações prediais de prevenção e combate a incêndio</p>
+
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4329-1/01 - Instalação de painéis publicitários.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Instalações e equipamentos referente a arquitetura.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.5.10. Execução de comunicação visual para edificações</p>
+
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4329-1/04 - Montagem e instalações de sistemas e equipamentos de iluminação e sinalização em vias públicas, portos e aeroportos.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Urbanismo e Desenho urbano.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.8.2. Execução de sistema de iluminação pública</p>
+        <p class="my-1" style="text-indent: 20px;">2.8.3. Execução de comunicação visual urbanística</p>   
+        <p class="my-1" style="text-indent: 20px;">2.8.4. Execução de obra de sinalização viária</p>
+
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4329-1/05 - Tratamentos térmicos, acústicos ou de vibração.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Conforto ambiental.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.3.3. Execução de instalações de condicionamento acústico</p>
+
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4330-4/01 - Impermeabilização em obras de engenharia civil.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Instalações e equipamentos referente a arquitetura.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.5.1. Execução de instalações hidrossanitárias prediais</p>
+        <p class="my-1" style="text-indent: 20px;">2.5.2. Execução de instalações prediais de águas pluviais</p>   
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4330-4/02 - Instalação de portas, jnelas, tetos, divisórias e armários embutidos de qualquer material.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução - Arquitetura das edificações.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.1.3. Execução de edifício efêmero ou instalações efêmeras</p>
+        <p class="my-1" style="text-indent: 20px;">2.4.3. Execução de mobiliário</p>   
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4391-6/00 - Obras de fundações.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Sitemas construtivos e estruturais.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.2.1. Execução de estrutura de madeira</p>
+        <p class="my-1" style="text-indent: 20px;">2.2.2. Execução de estrutura de concreto</p>
+        <p class="my-1" style="text-indent: 20px;">2.2.3. Execução de estrutura pré-fabricada</p>
+        <p class="my-1" style="text-indent: 20px;">2.2.4. Execução de estrutura metálica</p>
+        <p class="my-1" style="text-indent: 20px;">2.2.5. Execução de estruturas mistas</p>
+        <p class="my-1" style="text-indent: 20px;">2.2.6. Execução de outras estruturas</p>
+        
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4399-1/01 - Administração de Obras.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Gestão.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">3.2. SUPERVISÃO DE OBRA OU SERVIÇO TÉCNICO </p>
+        <p class="my-1" style="text-indent: 20px;">3.3. DIREÇÃO OU CONDUÇÃO DE OBRA OU SERVIÇO TÉCNICO</p>
+        <p class="my-1" style="text-indent: 20px;">3.4. GERENCIAMENTO DE OBRA OU SERVIÇO TÉCNICO</p>
+        <p class="my-1" style="text-indent: 20px;">3.5. ACOMPANHAMENTO DE OBRA OU SERVIÇO TÉCNICO</p>
+        <p class="my-1" style="text-indent: 20px;">3.6. FISCALIZAÇÃO DE OBRA OU SERVIÇO TÉCNICO</p>
+        <p class="my-1" style="text-indent: 20px;">3.7. DESEMPENHO DE CARGO OU FUNÇÃO TÉCNICA</p>
+        
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4399-1/02 - Montagem e desmontagem de andaimes e outras estruturas.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução - Arquitetura das edificações.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.1.3. Execução de edifício efêmero ou instalações efêmeras</p>
+
+
+      </details>
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Sitemas construtivos e estruturais.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.2.6. Execução de outras estruturas</p>
+
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">4399-1/03 - Obras de Alvenaria.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução - Arquitetura das edificações.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.1.1. Execução de obra</p>
+        <p class="my-1" style="text-indent: 20px;">2.1.2. Execução de reforma de edificação</p>
+        <p class="my-1" style="text-indent: 20px;">2.4.1. Execução de obra de interiores</p>
+        <p class="my-1" style="text-indent: 20px;">2.4.2. Execução de reforma de interiores</p>
+        
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">9102-3/02 - Restauração e conservação de lugares e prédios históricos.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Patrimônio arquitetônico, urbanistico e paisagistico.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">1.11.1. Preservação de edificações de interesse histórico-cultural</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.1.1. Registro da evolução do edifício</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.1.2. Avaliação do estado de conservação</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.1.3. Projeto de consolidação</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.1.4. Projeto de estabilização</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.1.5. Projeto de requalificação</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.1.6. Projeto de conversão funcional</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.1.7. Projeto de restauração</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.1.8. Plano de conservação preventiva</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.2. Preservação de sítios histórico-culturais</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.2.1. Levantamento físico, socioeconômico e cultural</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.2.2. Registro da evolução urbana</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.2.3. Inventário patrimonial</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.2.4. Projeto urbanístico setorial</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.2.5. Projeto de requalificação de espaços públicos</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.2.6. Projeto de requalificação habitacional</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.2.7. Projeto de reciclagem da infraestrutura</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.2.8. Plano de preservação</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.2.9. Plano de gestão patrimonial</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.3. Preservação de jardins e parques históricos</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.3.1. Prospecção e inventário</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.3.2. Registro da evolução do sítio</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.3.3. Projeto de restauração paisagística</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.3.4. Projeto de requalificação paisagística</p>
+        <p class="my-1" style="text-indent: 20px;">1.11.3.5. Plano de manejo e conservação</p>
+        
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">8130-3/00 - Atividades Paisagísticas.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Arquitetura Paisagística.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.6.2. Execução de recuperação paisagística</p>
+        <p class="my-1" style="text-indent: 20px;">2.6.3. Implementação de plano de manejo e conservação</p>   
+
+
+      </details>
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >Execução- Patrimônio arquitetônico, urbanistico e paisagistico.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">2.9.3. Preservação de jardins e parques históricos</p>
+        <p class="my-1" style="text-indent: 20px;">2.9.3.3. Implementação de plano de manejo e conservação</p>   
+
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">8531-7/00 - Educação Superior-Graduação.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >ENSINO.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">6.1.1. Ensino de graduação e/ou pós-graduação</p>
+
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">8532-5/00 - Educação Superior- Graduação e Pós graduação.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >ENSINO.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">6.1.1. Ensino de graduação e/ou pós-graduação</p>
+
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">8533-3/00 - Educação Superior- Pós graduação e extensão.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >ENSINO.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">6.1.1. Ensino de graduação e/ou pós-graduação</p>
+        <p class="my-1" style="text-indent: 20px;">6.1.2. Extensão</p>
+        <p class="my-1" style="text-indent: 20px;">6.1.3. Educação continuada</p>
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">8541-4/00 - Educação profissional de nível técnico.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >ENSINO.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">6.1.5. Ensino Técnico Profissionalizante</p>
+
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">8542-2/00 - Educação profissional de nível tecnológico.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >ENSINO.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">6.1.1. Ensino de graduação e/ou pós-graduação</p>
+
+
+      </details>
+
+
+    </details>
+
+
+    <details class="styled-details">
+
+      <summary class="styled-summary">8599-6/04 - Treinamento em desenvolvimento profissional e gerencial.</summary>
+
+      <hr class="mt-0">
+
+      <!-- botoes -->
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" >ENSINO.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
+        <p class="my-1" style="text-indent: 20px;">6.1.4. Treinamento</p>
+
+
+      </details>
+
+
+    </details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+    
+    <!-- ------------------------------ modelos --------------------------------------------->
+
+    <!-- <details class="styled-details">
+
+      <summary class="styled-summary">Modelo</summary>
+
+      <hr class="mt-0">
+
+
+      <div class="d-flex">
+
+        <button class="btn px-2 btn-expandir">
+          <i class="bi bi-plus-circle"></i>
+          <span class="b_expandir_recolher">Expandir tudo.</span>
+        </button>
+      
+        <button class="btn px-2 btn-recolher" style="display: none;">
+          <i class="bi bi-dash-circle"></i>
+          <span class="b_expandir_recolher">Recolher tudo.</span>
+        </button>
+        
+      </div>
+
+
+      <details class="my-1 p-2">
+
+        <summary class="sumary-custom" > Arquitetura e Urbanismo, concepção e execução de projetos.</summary>
+
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.1.1. Levantamento arquitetônico</p>
+        <p class="my-1" style="text-indent: 20px;">1.1.2. Projeto arquitetônico</p>
+        <p class="my-1" style="text-indent: 20px;">1.1.3. Projeto arquitetônico de reforma</p>
+        <p class="my-1" style="text-indent: 20px;">1.1.4. Projeto de edifício efêmero ou instalações efêmeras</p>
+        <p class="my-1" style="text-indent: 20px;">1.1.5. Projeto de monumento</p>
+        <p class="my-1" style="text-indent: 20px;">1.1.6. Projeto de adequação de acessibilidade</p>
+        <p class="my-1" style="text-indent: 20px;">1.1.7. As built</p>
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Conforto Ambiental.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.3.1. Projeto de adequação ergonômica</p>
+        <p class="my-1" style="text-indent: 20px;">1.3.2. Projeto de luminotecnia</p>
+
+      </details>
+
+      <details class="my-1 p-2" >
+
+        <summary class="sumary-custom" >Arquitetura de Interiores, concepção e execução de projetos.</summary>
+        <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
+        <p class="my-1" style="text-indent: 20px;">1.4.1. Projeto de arquitetura de interiores</p>
+        <p class="my-1" style="text-indent: 20px;">1.4.2. Projeto de reforma de interiores</p>
+        <p class="my-1" style="text-indent: 20px;">1.4.3. Projeto de mobiliário</p>
+
+      </details>
+
+      <hr>
+
+      <h5>Notas Explicativas:</h5>
+
+      <p>
+        <h6>Esta subclasse compreende:</h6>
+        as atividades de consultoria e de prestação de serviços técnicos de arquitetura, tais como: <br>
+        - os projetos de arquitetura de prédios (projetos conceituais, projetos de detalhamento, etc.)<br>
+        - a supervisão da execução de projetos de arquitetura<br>
+        - os projetos para ordenação urbana e uso do solo<br>
+        - os projetos de arquitetura paisagística<br>
+
+        <h6 class="mt-2">Esta subclasse não compreende:</h6>
+        - os serviços de desenho técnico relacionados à arquitetura e engenharia (7119-7/03)<br>
+        - design e decoração de interiores (74.10-2 )<br>
+        - a atividade de decoração de interiores (7410-2/02)<br>
+        - as atividades paisagísticas como o plantio, tratamento e manutenção de jardins e gramados (8130-3/00)<br>
+      </p>
+
+      <hr>
+
+      </details> -->
+
+    <!-- ------------------------------------------------------------------------------ -->
+
+    <!-- https://cnae.ibge.gov.br/?view=subclasse&tipo=cnae&versao=10.1.0&subclasse=7111100&chave=arquitetura -->
+
+    <div style="background-color: #041d36;">
+      <div class="text-light p-2 text-center"><strong>CAU/SP</strong></div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Sistemas construtivos e estruturais.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.2.1. Projeto De Estrutura De Madeira</p>
-      <p class="my-1" style="text-indent: 20px;">1.2.2. Projeto De Estrutura De Concreto</p>
-      <p class="my-1" style="text-indent: 20px;">1.2.3. Projeto De Estrutura Pré-Fabricada</p>
-      <p class="my-1" style="text-indent: 20px;">1.2.4. Projeto De Estrutura Metálica</p>
-      <p class="my-1" style="text-indent: 20px;">1.2.5. Projeto De Estruturas Mistas</p>
-      <p class="my-1" style="text-indent: 20px;">1.2.6. Projeto De Outras Estruturas</p>
-
-    </details>
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Conforto Ambiental.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.3.3. Projeto De Condicionamento Acústico</p>
-      <p class="my-1" style="text-indent: 20px;">1.3.4. Projeto De Sonorização</p>
-      <p class="my-1" style="text-indent: 20px;">1.3.5. Projeto De Ventilação, Exaustão E Climatização</p>
-      <p class="my-1" style="text-indent: 20px;">1.3.6. Projeto De Certificação Ambiental</p>
-
-
-    </details>
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Instalações e equipamentos referentes a arquitetura.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.5.1. Projeto de instalações hidrossanitárias prediais</p>
-      <p class="my-1" style="text-indent: 20px;">1.5.2. Projeto De Instalações Prediais De Águas Pluviais</p>
-      <p class="my-1" style="text-indent: 20px;">1.5.3. Projeto De Instalações Prediais De Gás Canalizado</p>
-      <p class="my-1" style="text-indent: 20px;">1.5.4. Projeto De Instalações Prediais De Gases Medicinais</p>
-      <p class="my-1" style="text-indent: 20px;">1.5.5. Projeto De Instalações Prediais De Prevenção E Combate A Incêndio</p>
-      <p class="my-1" style="text-indent: 20px;">1.5.6. Projeto De Sistemas Prediais De Proteção Contra Incêndios E Catástrofes</p>
-      <p class="my-1" style="text-indent: 20px;">1.5.7. Projeto De Instalações Elétricas Prediais De Baixa Tensão</p>
-      <p class="my-1" style="text-indent: 20px;">1.5.8. Projeto De Instalações Telefônicas Prediais</p>
-      <p class="my-1" style="text-indent: 20px;">1.5.9. Projeto De Instalações Prediais De TV</p>
-      <p class="my-1" style="text-indent: 20px;">1.5.11. Projeto De Cabeamento Estruturado, Automação E Lógica Em Edifícios</p>
-
-
-
-
-    </details>
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Instalações e equipamentos referentes a urbanismo.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.9.1. Projeto de movimentação de terra, drenagem e pavimentação (incluído)</p>
-      <p class="my-1" style="text-indent: 20px;">1.9.2. Projeto de sistema de iluminação pública (incluído)</p>
-      <p class="my-1" style="text-indent: 20px;">1.9.5. Projeto de sistema de coleta de resíduos sólidos (incluído)</p>
-      <p class="my-1" style="text-indent: 20px;">1.9.4. Projeto de sinalização viária (incluído)</p>  
-
-    </details>
-
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Meio ambiente.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">4.2.1. Zoneamento Geoambiental</p>
-      <p class="my-1" style="text-indent: 20px;">4.2.2. Diagnóstico Ambiental</p>
-      <p class="my-1" style="text-indent: 20px;">4.2.3. Relatório Ambiental Simplificado – RAS</p>
-      <p class="my-1" style="text-indent: 20px;">4.2.4. Estudo De Impacto De Vizinhança – EIV</p>
-      <p class="my-1" style="text-indent: 20px;">4.2.5. Estudo De Viabilidade Ambiental – EVA</p>
-      <p class="my-1" style="text-indent: 20px;">4.2.6. Estudo De Impacto Ambiental – Relatório De Impacto No Meio Ambiente – EIA – RIMA</p>
-      <p class="my-1" style="text-indent: 20px;">4.2.7. Estudo De Impacto Ambiental Complementar – EIAc</p>
-      <p class="my-1" style="text-indent: 20px;">4.2.8. Plano De Monitoramento Ambiental</p>
-      <p class="my-1" style="text-indent: 20px;">4.2.9. Plano De Controle Ambiental – PCA</p>
-      <p class="my-1" style="text-indent: 20px;">4.2.10. Relatório De Controle Ambiental – RCA</p>
-      <p class="my-1" style="text-indent: 20px;">4.2.11. Plano De Manejo Ambiental</p>
-      <p class="my-1" style="text-indent: 20px;">4.2.12. Plano De Recuperação De Áreas Degradadas – PRAD</p>
-      <p class="my-1" style="text-indent: 20px;">4.2.13. Plano De Gerenciamento De Resíduos Sólidos – PGRS</p>
-      
-
-
-    </details>
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Gestão.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">3.2. Supervisão de obra ou serviço técnico</p>
-      <p class="my-1" style="text-indent: 20px;">3.3. Direção ou condução de obra ou serviço técnico</p>
-      <p class="my-1" style="text-indent: 20px;">3.5. Acompanhamento de obra ou serviço técnico</p>
-      <p class="my-1" style="text-indent: 20px;">3.6. Fiscalização de obra ou serviço técnico</p>     
-
-
-    </details>
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Atividades Especiais.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">5.3. Assistência Técnica</p>
-      <p class="my-1" style="text-indent: 20px;">5.4. Vistoria</p>
-      <p class="my-1" style="text-indent: 20px;">5.5. Perícia</p>
-      <p class="my-1" style="text-indent: 20px;">5.6. Avaliação</p>
-      <p class="my-1" style="text-indent: 20px;">5.7. Laudo Técnico</p>
-      <p class="my-1" style="text-indent: 20px;">5.8. Parecer Técnico</p>
-      <p class="my-1" style="text-indent: 20px;">5.9. Auditoria</p>
-      <p class="my-1" style="text-indent: 20px;">5.10. Arbitragem</p>
-      <p class="my-1" style="text-indent: 20px;">5.11. Mensuração</p>
-
-    </details>
-
-
-  </details>
-
-  <!-- ------------------------------------------------------------------------------ -->
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">7119-7/01 - Serviços de cartografia, topografia e geodésia.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
+    <script>
+      // Seleciona todos os modelos (as divs que contêm os botões e detalhes)
+      document.querySelectorAll('.styled-details').forEach(modelo => {
+        const detalhes = modelo.querySelectorAll('details');
+        const btnExpandir = modelo.querySelector('.btn-expandir');
+        const btnRecolher = modelo.querySelector('.btn-recolher');
     
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Georreferenciamento e Topografia.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">4.1.3. Georreferenciamento</p>
-      <p class="my-1" style="text-indent: 20px;">4.1.4. Levantamento Topográfico Planialtimétrico</p>
-      <p class="my-1" style="text-indent: 20px;">4.1.5. Análise De Dados Georreferenciados E Topográficos</p>
-      <p class="my-1" style="text-indent: 20px;">4.1.6. Cadastro Técnico Multifinalitário</p>
-      <p class="my-1" style="text-indent: 20px;">4.1.7. Elaboração De Sistemas De Informações Geográficas – SIG</p>
-
-    </details>
-
-
-  </details>
-
-  <!-- ------------------------------------------------------------------------------ -->
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">7119-7/03 - Serviços de desenho técnico relacionados à arquitetura e engenharia.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
+        // Função para expandir todos os <details> dentro do modelo atual
+        btnExpandir.addEventListener('click', () => {
+          detalhes.forEach(detail => detail.open = true);
+          btnExpandir.style.display = 'none';  // Oculta o botão Expandir
+          btnRecolher.style.display = 'inline-block';  // Mostra o botão Recolher
+        });
     
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-    
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Topografia, elaboração e interpretação de levantamentos topográficos cadastrais para a
-        realização de projetos de arquitetura, de urbanismo e de paisagismo.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.1.1. Levantamento Arquitetônico</p>
-      <p class="my-1" style="text-indent: 20px;">1.1.7. As Built</p>
-      <p class="my-1" style="text-indent: 20px;">1.6.1. Levantamento Paisagístico</p>
-      <p class="my-1" style="text-indent: 20px;">1.8.1. Levantamento Cadastral</p>
-
-    </details>
-
-  </details>
-
-  <!-- ------------------------------------------------------------------------------ -->
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">7119-7/04 - Serviços de perícia técnica relacionados à segurança do trabalho.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Engenharia de segurança do trabalho.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">7.1.1. Plano Da Gestão De Segurança Do Trabalho</p>
-      <p class="my-1" style="text-indent: 20px;">7.1.3. Plano De Emergência</p>
-      <p class="my-1" style="text-indent: 20px;">7.1.4. Plano De Prevenção De Catástrofes</p>
-      <p class="my-1" style="text-indent: 20px;">7.1.5. Plano De Contingência</p>
-      
-      <p class="my-1" style="text-indent: 20px;">7.2.1. Programa De Condições E Meio Ambiente De Trabalho Na Indústria Da Construção – PCMAT</p>
-      <p class="my-1" style="text-indent: 20px;">7.2.3. Programa De Proteção Respiratória</p>
-      <p class="my-1" style="text-indent: 20px;">7.2.4. Programa De Conservação Auditiva</p>
-      <p class="my-1" style="text-indent: 20px;">7.2.5. Programa De Prevenção Da Exposição Ocupacional Ao Benzeno – PPEOB</p>
-      
-      <p class="my-1" style="text-indent: 20px;">7.3.1. Riscos Químicos</p>
-      <p class="my-1" style="text-indent: 20px;">7.3.2. Riscos Físicos</p>
-      <p class="my-1" style="text-indent: 20px;">7.3.3. Riscos Biológicos</p>
-      <p class="my-1" style="text-indent: 20px;">7.3.4. Riscos Ambientais</p>
-      <p class="my-1" style="text-indent: 20px;">7.3.5. Riscos Ergonômicos</p>
-      
-      <p class="my-1" style="text-indent: 20px;">7.4. Mapa De Risco Das Condições E Meio Ambiente De Trabalho</p>
-      
-      <p class="my-1" style="text-indent: 20px;">7.5.1. Vistoria</p>
-      <p class="my-1" style="text-indent: 20px;">7.5.2. Perícia</p>
-      <p class="my-1" style="text-indent: 20px;">7.5.3. Avaliação</p>
-      <p class="my-1" style="text-indent: 20px;">7.5.4. Laudo</p>
-      
-      <p class="my-1" style="text-indent: 20px;">7.6. Laudo De Inspeção Sobre Atividades Insalubres</p>
-     
-      
-      <p class="my-1" style="text-indent: 20px;">7.8.1. Equipamentos De Proteção Individual – EPI</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.2. Equipamentos De Proteção Coletiva</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.3. Medidas De Proteção Coletiva</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.4. Avaliação De Atividades Perigosas</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.5. Medidas De Proteção Contra Incêndios E Catástrofes</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.6. Instalações De Segurança Do Trabalho</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.7. Condições De Trabalho</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.8. Sinalização De Segurança</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.9. Dispositivos De Segurança</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.10. Segurança Em Instalações Elétricas</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.11. Segurança Para Operação De Elevadores E Guindastes</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.12. Projeto De Sistemas De Segurança</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.13. Projeto De Proteção Contra Incêndios</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.14. Acompanhamento Da Execução De Obras E Serviços Relacionados À Segurança Do Trabalho</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.15. Assessoria</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.16. Inspeção E Controle</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.17. Especificação</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.18. Orientação Técnica</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.19. Fiscalização</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.20. Supervisão</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.21. Coordenação</p>
-      <p class="my-1" style="text-indent: 20px;">7.8.22. Gerenciamento</p>
-
-    </details>
-
-
-  </details>
-
-  <!-- ------------------------------------------------------------------------------ -->
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">7119-7/99 - Atividades técnicas relacionadas à engenharia e arquitetura não especificadas anteriormente.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Topografia, elaboração e interpretação de levantamentos topográficos cadastrais para a
-        realização de projetos de arquitetura, de urbanismo e de paisagismo.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">4.1.1. Levantamento Topográfico Por Imagem</p>
-      <p class="my-1" style="text-indent: 20px;">4.1.2. Fotointerpretação</p>
-      
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">7210-0/00 - Pesquisa e desenvolvimento experimental em ciências físicas e naturais.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Tecnologia e resistência dos materiais, dos elementos e produtos de construção, patologias e
-        recuperações.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">6.2. Pesquisa</p>
-      <p class="my-1" style="text-indent: 20px;">6.3.1. Pesquisa e inovação tecnológica</p>
-      <p class="my-1" style="text-indent: 20px;">6.3.2. Pesquisa aplicada em tecnologia da construção</p>
-      <p class="my-1" style="text-indent: 20px;">6.3.3. Pesquisa de elemento ou produto para a construção</p>
-      <p class="my-1" style="text-indent: 20px;">6.3.4. Estudo ou pesquisa de resistência dos materiais</p>
-      <p class="my-1" style="text-indent: 20px;">6.3.5. Estudo e correção de patologias da construção</p>
-      <p class="my-1" style="text-indent: 20px;">6.3.6. Padronização de produto para a construção</p>
-      <p class="my-1" style="text-indent: 20px;">6.3.7. Ensaio de materiais</p>
-      <p class="my-1" style="text-indent: 20px;">6.3.8. Controle de qualidade de construção ou produto</p>     
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">7410-2/02 - Design de Interiores.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Arquitetura de Interiores, concepção e execução de projetos.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-
-      <p class="my-1" style="text-indent: 20px;">1.4.1. Projeto de arquitetura de interiores</p>
-      <p class="my-1" style="text-indent: 20px;">1.4.2. Projeto de reforma de interiores      </p>   
-
-
-    </details>
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Conforto Ambiental.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.3.2. Projeto de luminotecnia</p>
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">7410-2/03 - Design de produtos.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Arquitetura de interiores.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">1.4.3. Projeto de mobiliário</p>
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">7410-2/99 - Atividades de design não especificadas anteriormente.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >INSTALAÇÕES E EQUIPAMENTOS REFERENTES À ARQUITETURA.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">1.5.10. Projeto de comunicação visual para edificações</p>
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">7490-1/99 - Atividades profissionais, cientificas e técnicas não especificadas anteriormente.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Engenharia de segurança do trabalho.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">7.1.2. Programa de Gerenciamento de Riscos – PGR</p>
-      <p class="my-1" style="text-indent: 20px;">7.2.2. Programa de Prevenção de Riscos Ambientais – PPRA</p>   
-      <p class="my-1" style="text-indent: 20px;">7.7. LAUDO TÉCNICO DE CONDIÇÕES DO TRABALHO - LTCAT</p>
-
-
-    </details>
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Conforto Ambiental.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.3.1. Execução de adequação ergonômica</p>
-
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4120-4/00 - Construção de edifícios.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução - Arquitetura das edificações.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.1.1. Execução de obra</p>
-      <p class="my-1" style="text-indent: 20px;">2.1.2. Execução de reforma de edificação</p>
-      <p class="my-1" style="text-indent: 20px;">2.1.3. Execução de edifício efêmero ou instalações efêmeras</p>
-      <p class="my-1" style="text-indent: 20px;">2.1.4. Execução de monumento</p>
-      <p class="my-1" style="text-indent: 20px;">2.1.5. Execução de adequação de acessibilidade</p>
-
-    </details>
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução -Sistemas Construtivos e Estruturais.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.2.1. Execução de estrutura de madeira</p>
-      <p class="my-1" style="text-indent: 20px;">2.2.2. Execução de estrutura de concreto</p>
-      <p class="my-1" style="text-indent: 20px;">2.2.3. Execução de estrutura pré-fabricada</p>
-      <p class="my-1" style="text-indent: 20px;">2.2.5. Execução de estruturas mistas</p>
-      <p class="my-1" style="text-indent: 20px;">2.2.6. Execução de outras estruturas</p>
-
-      
-
-    </details>
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução - Arquitetura de interiores.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.4.1. Execução de obra de interiores</p>
-      <p class="my-1" style="text-indent: 20px;">2.4.2. Execução de reforma de interiores</p>
-
-
-    </details>
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Patrimônio arquitetônico, urbanistico e paisagistico.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.9.1. Preservação de edificações de interesse histórico-cultural</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.1.1. Execução de obra de preservação do patrimônio edificado</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.1.2. Execução de obra de consolidação</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.1.3. Execução de obra de estabilização</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.1.4. Execução de obra de reutilização</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.1.5. Execução de obra de requalificação</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.1.6. Execução de obra de conversão funcional</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.1.7. Execução de obra de restauração</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.1.8. Execução de obra de conservação preventiva</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.2.3. Execução de obra de requalificação habitacional</p>
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4213-8/00 - Obras de urbanização-Ruas, praças e calçadas.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução - Urbanismo e Desenho urbano.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.6.1. Execução de obra de arquitetura paisagística</p>
-      <p class="my-1" style="text-indent: 20px;">2.7.1. Execução de obra urbanística</p>
-      <p class="my-1" style="text-indent: 20px;">2.7.4. Implantação de sistema especializado de tráfego e trânsito de veículos e sistemas de estacionamento</p>
-      <p class="my-1" style="text-indent: 20px;">2.7.5. Execução de sistema viário e acessibilidade</p>
-     
-
-    </details>
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Instalações e equipamentos referentes ao urbanismo.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.7.6. Execução de mobiliário urbano</p>
-      <p class="my-1" style="text-indent: 20px;">2.8.1. Execução de terraplenagem, drenagem e pavimentação</p>
-
-
-    </details>
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução - Patrimônio arquitetônico, urbanistico e paisagistico.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.8.4. Execução de obra de sinalização viária</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.2. Preservação de sítios histórico-culturais</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.2.1. Execução de obra urbanística setorial</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.2.2. Execução de obra de requalificação de espaços públicos</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.2.4. Execução de obra de reciclagem da infraestrutura</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.3.1. Execução de obra de restauração paisagística</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.3.2. Execução de requalificação paisagística</p>
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4292-8/01 - Montagem de estruturas metálicas.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Sitemas construtivos e estruturais.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.2.4. Execução de estrutura metálica</p>
-
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4299-5/99 - Obras de engenharia civil não especificadas anteriormente.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Urbanismo e Desenho urbano.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.7.2. Execução de obra de parcelamento do solo mediante loteamento</p>
-      <p class="my-1" style="text-indent: 20px;">2.7.3. Execução de obra de parcelamento do solo mediante desmembramento ou remembramento</p>   
-
-      
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4311-8/01 - Demolição de edifícios e outras estruturas.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução - Arquitetura das edificações.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.1.1. Execução de obra</p> 
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4311-8/02 - Preparação de canteiro e limpeza de terreno.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução - Arquitetura das edificações.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.1.1. Execução de obra</p>
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4312-6/00 - Perfurações e sondagens.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Atividades Especiais.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">5.7. LAUDO TÉCNICO</p>
-
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4313-4/00 - Obras de terraplenagem.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Instalações e equipamentos referente a arquitetura.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.8.1. Execução de terraplenagem, drenagem e pavimentação</p>
-
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4319-0/00 - Serviços de preparação do terreno não especificados anteriormente.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Instalações e equipamentos referente a arquitetura.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.8.1. Execução de terraplenagem, drenagem e pavimentação</p>
-
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4321-5/00 - Instalação e manutenção elétrica.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução - Conforto ambiental.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.3.2. Execução de instalações de luminotecnia</p>
-      <p class="my-1" style="text-indent: 20px;">2.3.4. Execução de instalações de sonorização</p>
-
-      
-
-    </details>
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução - Instalações e equipamentos referente a arquitetura.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.5.6. Execução de sistemas prediais de proteção contra incêndios e catástrofes</p>
-      <p class="my-1" style="text-indent: 20px;">2.5.7. Execução de instalações elétricas prediais de baixa tensão</p>
-      <p class="my-1" style="text-indent: 20px;">2.5.8. Execução de instalações telefônicas prediais</p>
-      <p class="my-1" style="text-indent: 20px;">2.5.9. Execução de instalações prediais de TV</p>
-      <p class="my-1" style="text-indent: 20px;">2.5.11. Execução de cabeamento estruturado, automação e lógica em edifícios</p>
-
-    </details>
-
-
-  </details>
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4322-3/01 - Instalações hidráulicas, sanitárias e de gás.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Instalações e equipamentos referente a arquitetura.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.5.1. Execução de instalações hidrossanitárias prediais</p>
-      <p class="my-1" style="text-indent: 20px;">2.5.2. Execução de instalações prediais de águas pluviais</p>
-      <p class="my-1" style="text-indent: 20px;">2.5.3. Execução de instalações prediais de gás canalizado</p>
-      <p class="my-1" style="text-indent: 20px;">2.5.4. Execução de instalações prediais de gases medicinais</p>
-      
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4322-3/02 - Instalação e manutenção de sistemas centrais de ar condicionado, de ventilação e refrigeração.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Conforto ambiental.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.3.5. Execução de instalações de ventilação, exaustão e climatização</p>
-
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4322-3/03 - Instalações de sistema de prevenção contra incêndio.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Instalações e equipamentos referente a arquitetura.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.5.5. Execução de instalações prediais de prevenção e combate a incêndio</p>
-
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4329-1/01 - Instalação de painéis publicitários.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Instalações e equipamentos referente a arquitetura.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.5.10. Execução de comunicação visual para edificações</p>
-
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4329-1/04 - Montagem e instalações de sistemas e equipamentos de iluminação e sinalização em vias púbicas, portos e aeroportos.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Urbanismo e Desenho urbano.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.8.2. Execução de sistema de iluminação pública</p>
-      <p class="my-1" style="text-indent: 20px;">2.8.3. Execução de comunicação visual urbanística</p>   
-      <p class="my-1" style="text-indent: 20px;">2.8.4. Execução de obra de sinalização viária</p>
-
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4329-1/05 - Tratamentos térmicos, acústicos ou de vibração.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Conforto ambiental.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.3.3. Execução de instalações de condicionamento acústico</p>
-
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4330-4/01 - Impermeabilização em obras de engenharia civil.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Instalações e equipamentos referente a arquitetura.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.5.1. Execução de instalações hidrossanitárias prediais</p>
-      <p class="my-1" style="text-indent: 20px;">2.5.2. Execução de instalações prediais de águas pluviais</p>   
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4330-4/02 - Instalação de portas, jnelas, tetos, divisórias e armários embutidos de qualquer material.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução - Arquitetura das edificações.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.1.3. Execução de edifício efêmero ou instalações efêmeras</p>
-      <p class="my-1" style="text-indent: 20px;">2.4.3. Execução de mobiliário</p>   
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4391-6/00 - Obras de fundações.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Sitemas construtivos e estruturais.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.2.1. Execução de estrutura de madeira</p>
-      <p class="my-1" style="text-indent: 20px;">2.2.2. Execução de estrutura de concreto</p>
-      <p class="my-1" style="text-indent: 20px;">2.2.3. Execução de estrutura pré-fabricada</p>
-      <p class="my-1" style="text-indent: 20px;">2.2.4. Execução de estrutura metálica</p>
-      <p class="my-1" style="text-indent: 20px;">2.2.5. Execução de estruturas mistas</p>
-      <p class="my-1" style="text-indent: 20px;">2.2.6. Execução de outras estruturas</p>
-      
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4399-1/01 - Administração de Obras.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Gestão.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">3.2. SUPERVISÃO DE OBRA OU SERVIÇO TÉCNICO</p>
-      <p class="my-1" style="text-indent: 20px;">3.3. DIREÇÃO OU CONDUÇÃO DE OBRA OU SERVIÇO TÉCNICO</p>
-      <p class="my-1" style="text-indent: 20px;">3.4. GERENCIAMENTO DE OBRA OU SERVIÇO TÉCNICO</p>
-      <p class="my-1" style="text-indent: 20px;">3.5. ACOMPANHAMENTO DE OBRA OU SERVIÇO TÉCNICO</p>
-      <p class="my-1" style="text-indent: 20px;">3.6. FISCALIZAÇÃO DE OBRA OU SERVIÇO TÉCNICO</p>
-      <p class="my-1" style="text-indent: 20px;">3.7. DESEMPENHO DE CARGO OU FUNÇÃO TÉCNICA</p>
-       
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4399-1/02 - Montagem e desmontagem de andaimes e outras estruturas.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução - Arquitetura das edificações.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.1.3. Execução de edifício efêmero ou instalações efêmeras</p>
-
-
-    </details>
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Sitemas construtivos e estruturais.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.2.6. Execução de outras estruturas</p>
-
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">4399-1/03 - Obras de Alvenaria.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução - Arquitetura das edificações.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.1.1. Execução de obra</p>
-      <p class="my-1" style="text-indent: 20px;">2.1.2. Execução de reforma de edificação</p>
-      <p class="my-1" style="text-indent: 20px;">2.4.1. Execução de obra de interiores</p>
-      <p class="my-1" style="text-indent: 20px;">2.4.2. Execução de reforma de interiores</p>
-       
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">9102-3/02 - Restauração e conservação de lugares e prédios históricos.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Patrimônio arquitetônico, urbanistico e paisagistico.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">1.11.1. Preservação de edificações de interesse histórico-cultural</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.1.1. Registro da evolução do edifício</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.1.2. Avaliação do estado de conservação</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.1.3. Projeto de consolidação</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.1.4. Projeto de estabilização</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.1.5. Projeto de requalificação</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.1.6. Projeto de conversão funcional</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.1.7. Projeto de restauração</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.1.8. Plano de conservação preventiva</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.2. Preservação de sítios histórico-culturais</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.2.1. Levantamento físico, socioeconômico e cultural</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.2.2. Registro da evolução urbana</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.2.3. Inventário patrimonial</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.2.4. Projeto urbanístico setorial</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.2.5. Projeto de requalificação de espaços públicos</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.2.6. Projeto de requalificação habitacional</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.2.7. Projeto de reciclagem da infraestrutura</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.2.8. Plano de preservação</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.2.9. Plano de gestão patrimonial</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.3. Preservação de jardins e parques históricos</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.3.1. Prospecção e inventário</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.3.2. Registro da evolução do sítio</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.3.3. Projeto de restauração paisagística</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.3.4. Projeto de requalificação paisagística</p>
-      <p class="my-1" style="text-indent: 20px;">1.11.3.5. Plano de manejo e conservação</p>
-      
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">8130-3/00 - Atividades Paisagísticas.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Arquitetura Paisagística.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.6.2. Execução de recuperação paisagística</p>
-      <p class="my-1" style="text-indent: 20px;">2.6.3. Implementação de plano de manejo e conservação</p>   
-
-
-    </details>
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >Execução- Patrimônio arquitetônico, urbanistico e paisagistico.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">2.9.3. Preservação de jardins e parques históricos</p>
-      <p class="my-1" style="text-indent: 20px;">2.9.3.3. Implementação de plano de manejo e conservação</p>   
-
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">8531-7/00 - Educação Superior-Graduação.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >ENSINO.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">6.1.1. Ensino de graduação e/ou pós-graduação</p>
-
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">8532-5/00 - Educação Superior- Graduação e Pós graduação.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >ENSINO.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">6.1.1. Ensino de graduação e/ou pós-graduação</p>
-
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">8533-3/00 - Educação Superior- Pós graduação e extensão.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >ENSINO.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">6.1.1. Ensino de graduação e/ou pós-graduação</p>
-      <p class="my-1" style="text-indent: 20px;">6.1.2. Extensão</p>
-      <p class="my-1" style="text-indent: 20px;">6.1.3. Educação continuada</p>
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">8541-4/00 - Educação profissional de nível técnico.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >ENSINO.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">6.1.5. Ensino Técnico Profissionalizante</p>
-
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">8542-2/00 - Educação profissional de nível tecnológico.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >ENSINO.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">6.1.1. Ensino de graduação e/ou pós-graduação</p>
-
-
-    </details>
-
-
-  </details>
-
-
-  <details class="styled-details">
-
-    <summary class="styled-summary">8599-6/04 - Treinamento em desenvolvimento profissional e gerencial.</summary>
-
-    <hr class="mt-0">
-
-    <!-- botoes -->
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" >ENSINO.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR::</h6>
-      <p class="my-1" style="text-indent: 20px;">6.1.4. Treinamento</p>
-
-
-    </details>
-
-
-  </details>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-  
-  <!-- ------------------------------ modelos --------------------------------------------->
-
-  <!-- <details class="styled-details">
-
-    <summary class="styled-summary">Modelo</summary>
-
-    <hr class="mt-0">
-
-
-    <div class="d-flex">
-
-      <button class="btn px-2 btn-expandir">
-        <i class="bi bi-plus-circle"></i>
-        <span class="b_expandir_recolher">Expandir tudo.</span>
-      </button>
-    
-      <button class="btn px-2 btn-recolher" style="display: none;">
-        <i class="bi bi-dash-circle"></i>
-        <span class="b_expandir_recolher">Recolher tudo.</span>
-      </button>
-      
-    </div>
-
-
-    <details class="my-1 p-2">
-
-      <summary class="sumary-custom" > Arquitetura e Urbanismo, concepção e execução de projetos.</summary>
-
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.1.1. Levantamento arquitetônico</p>
-      <p class="my-1" style="text-indent: 20px;">1.1.2. Projeto arquitetônico</p>
-      <p class="my-1" style="text-indent: 20px;">1.1.3. Projeto arquitetônico de reforma</p>
-      <p class="my-1" style="text-indent: 20px;">1.1.4. Projeto de edifício efêmero ou instalações efêmeras</p>
-      <p class="my-1" style="text-indent: 20px;">1.1.5. Projeto de monumento</p>
-      <p class="my-1" style="text-indent: 20px;">1.1.6. Projeto de adequação de acessibilidade</p>
-      <p class="my-1" style="text-indent: 20px;">1.1.7. As built</p>
-
-    </details>
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Conforto Ambiental.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.3.1. Projeto de adequação ergonômica</p>
-      <p class="my-1" style="text-indent: 20px;">1.3.2. Projeto de luminotecnia</p>
-
-    </details>
-
-    <details class="my-1 p-2" >
-
-      <summary class="sumary-custom" >Arquitetura de Interiores, concepção e execução de projetos.</summary>
-      <h6 class="mt-3" style="text-indent: 20px;">Código de atividades de acordo com a Resolução 21 do CAU/BR:</h6>
-      <p class="my-1" style="text-indent: 20px;">1.4.1. Projeto de arquitetura de interiores</p>
-      <p class="my-1" style="text-indent: 20px;">1.4.2. Projeto de reforma de interiores</p>
-      <p class="my-1" style="text-indent: 20px;">1.4.3. Projeto de mobiliário</p>
-
-    </details>
-
-    <hr>
-
-    <h5>Notas Explicativas:</h5>
-
-    <p>
-      <h6>Esta subclasse compreende:</h6>
-      as atividades de consultoria e de prestação de serviços técnicos de arquitetura, tais como: <br>
-      - os projetos de arquitetura de prédios (projetos conceituais, projetos de detalhamento, etc.)<br>
-      - a supervisão da execução de projetos de arquitetura<br>
-      - os projetos para ordenação urbana e uso do solo<br>
-      - os projetos de arquitetura paisagística<br>
-
-      <h6 class="mt-2">Esta subclasse não compreende:</h6>
-      - os serviços de desenho técnico relacionados à arquitetura e engenharia (7119-7/03)<br>
-      - design e decoração de interiores (74.10-2 )<br>
-      - a atividade de decoração de interiores (7410-2/02)<br>
-      - as atividades paisagísticas como o plantio, tratamento e manutenção de jardins e gramados (8130-3/00)<br>
-    </p>
-
-    <hr>
-
-    </details> -->
-
-  <!-- ------------------------------------------------------------------------------ -->
-
-
-
-  <br>  <br>  <br>  <br>  <br>  <br>
-  <br>  <br>  <br>  <br>  <br>  <br>
-
-
-  <!-- https://cnae.ibge.gov.br/?view=subclasse&tipo=cnae&versao=10.1.0&subclasse=7111100&chave=arquitetura -->
-
-  <div style="background-color: #041d36;">
-    <div class="text-light p-2 text-center"><strong>CAU/SP</strong></div>
-  </div>
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-  <script>
-    // Seleciona todos os modelos (as divs que contêm os botões e detalhes)
-    document.querySelectorAll('.styled-details').forEach(modelo => {
-      const detalhes = modelo.querySelectorAll('details');
-      const btnExpandir = modelo.querySelector('.btn-expandir');
-      const btnRecolher = modelo.querySelector('.btn-recolher');
-  
-      // Função para expandir todos os <details> dentro do modelo atual
-      btnExpandir.addEventListener('click', () => {
-        detalhes.forEach(detail => detail.open = true);
-        btnExpandir.style.display = 'none';  // Oculta o botão Expandir
-        btnRecolher.style.display = 'inline-block';  // Mostra o botão Recolher
+        // Função para recolher todos os <details> dentro do modelo atual
+        btnRecolher.addEventListener('click', () => {
+          detalhes.forEach(detail => detail.open = false);
+          btnRecolher.style.display = 'none';  // Oculta o botão Recolher
+          btnExpandir.style.display = 'inline-block';  // Mostra o botão Expandir
+        });
       });
-  
-      // Função para recolher todos os <details> dentro do modelo atual
-      btnRecolher.addEventListener('click', () => {
-        detalhes.forEach(detail => detail.open = false);
-        btnRecolher.style.display = 'none';  // Oculta o botão Recolher
-        btnExpandir.style.display = 'inline-block';  // Mostra o botão Expandir
-      });
-    });
-  </script>
+    </script>
 
-</body>
+  </body>
 
 </html>
