@@ -86,6 +86,17 @@
                 
                 
             }
+
+            /* Cabeçalho da tabela personalizado */
+            .thead-navy {
+                background-color: #062e57;
+                color: #ffffff;
+            }
+
+            /* Cor da linha da tabela ao passar o mouse (Hover) - Azul bem claro */
+            .table-hover tbody tr:hover {
+                background-color: #f0f8ff !important; /* Tom suave de azul (AliceBlue) */
+            }
             
         </style>
 
@@ -551,14 +562,16 @@
 
 
 
-            <table class="table table-hover table-bordered" id="tabela_cnae">
-                <thead class="thead-light">
-                    <tr >
-                        <th class="align-middle">Código CNAE</th>
-                        <th class="align-middle">Código da atividade na Resolução nº 21 do CAU/BR</th>
-                        <th class="align-middle">Campo de Atuação</th>
+            <table class="table table-hover table-bordered mt-4" id="tabela_cnae">
+                <!-- Trocamos thead-light por thead-navy aqui -->
+                <thead class="thead-navy">
+                    <tr>
+                        <th class="align-middle border-0">Código CNAE</th>
+                        <th class="align-middle border-0">Código da atividade na Resolução nº 21 do CAU/BR</th>
+                        <th class="align-middle border-0">Campo de Atuação</th>
                     </tr>
                 </thead>
+
                 <tbody>
 
                     <tr>
