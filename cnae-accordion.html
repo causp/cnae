@@ -2,6 +2,8 @@
 <html lang="pt-br">
   <head>
 
+    <!-- em 02/04/2026 foi incluida a orientação sobre a diferença de cnae e objeto social -->
+     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8VNC3CYNBW"></script>
     <script>
@@ -155,6 +157,22 @@
         font-weight: bold; 
       }
 
+      /* Criação do botão com o azul personalizado da sua página */
+  .btn-outline-navy {
+    color: #041d36;
+    border-color: #041d36;
+  }
+  
+  /* Comportamento quando o mouse passa por cima, quando clicado ou quando ativo */
+  .btn-outline-navy:hover,
+  .btn-outline-navy:focus,
+  .btn-outline-navy:active,
+  .btn-outline-navy.active {
+    color: #ffffff;
+    background-color: #041d36;
+    border-color: #041d36;
+  }
+
     </style>
 
   </head>
@@ -167,13 +185,31 @@
       </nav>
     </header>
 
-
-    <div class="d-flex mb-3 px-2 my-1" style="font-size: 13px;">
-      <h6 class="me-2" style="font-size: 13px;">Opções de busca:</h6>
-      <a href="cnae-tabela.html" class="me-2" style="font-size: 13px; text-decoration: none;">| Tabela de CNAE</a>
-      <a href="cnae-accordion.html" style="font-size: 13px; text-decoration: none;">| Seções de CNAE |</a>
+    <div class="m-2 p-3 alert alert-warning alert-dismissible fade show" role="alert">
+        <p class="my-1">
+            Esta página <strong>não substitui a consultoria de um contador</strong> para questões tributárias relacionadas aos CNAEs, tampouco determina o grau de periculosidade das atividades conforme os planos diretores municipais.
+        </p>
+        <p class="my-1">
+            Os CNAEs serão compatibilizados para fins de <strong>cadastro de dados</strong> da Pessoa Jurídica no sistema do CAU.
+        </p>
+        <p class="my-1">
+            Para fins de registro de Pessoa Jurídica, será levado em consideração o <strong><u>Objeto Social</u></strong> da empresa, que deverá conter atividades e/ou atribuições de Arquitetura e Urbanismo. Para acessar a <a href="https://transparencia.caubr.gov.br/resolucao21/" target="_blank" >Resolução nº 21 do CAU/BR</a>, que dispõe sobre as <strong>atividades e atribuições profissionais do(a) arquiteto(a) e urbanista</strong>, <a href="https://transparencia.caubr.gov.br/resolucao21/" target="_blank" >clique aqui</a>.
+        </p>
+      
+      <button type="button" class="btn-close" aria-label="Close" onclick="fecharAlerta(this)"></button>
     </div>
 
+
+    <!-- Estrutura dos botões -->
+    <div class="d-flex align-items-center my-3 px-2 mt-4 mb-4">
+      <h6 class="mb-0 mx-2 me-2" style="font-size: 14px; font-weight: 600;">Opções de busca:</h6>
+      
+      <!-- O "active" abaixo deixa o botão preenchido, indicando que é a página atual -->
+      <a href="cnae-tabela.html" class="btn btn-outline-navy btn-sm rounded-pill me-2">Tabela de CNAE</a>
+      
+      <!-- Botão normal (sem preenchimento até passar o mouse) -->
+      <a href="cnae-accordion.html" class="btn btn-outline-navy btn-sm rounded-pill active">Seções de CNAE</a>
+    </div>
 
     <!-- CNAE 1 -->
 
@@ -2616,6 +2652,13 @@
           btnExpandir.style.display = 'inline-block';  // Mostra o botão Expandir
         });
       });
+
+      function fecharAlerta(btn) {
+          const alert = btn.closest('.alert');
+          alert.style.transition = 'opacity 0.3s';
+          alert.style.opacity = '0';
+          setTimeout(() => alert.remove(), 300);
+      }
     </script>
 
   </body>

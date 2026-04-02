@@ -2,6 +2,8 @@
 <html lang="pt-br">
     <head>
 
+        <!-- em 02/04/2026 foi incluida a orientação sobre a diferença de cnae e objeto social -->
+
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-8VNC3CYNBW"></script>
         <script>
@@ -51,6 +53,39 @@
                 box-shadow: 0 0 0 0.2rem #86b6e773 !important;
                 outline: none;
             }
+
+            /* Criação do botão com o azul personalizado da sua página */
+            /* Criação do botão com o azul personalizado da sua página */
+            .btn-outline-navy {
+                color: #041d36;
+                border-color: #041d36;
+                background-color: transparent; /* <-- ADICIONE ESTA LINHA */
+            }
+
+
+
+            /* Comportamento quando o mouse passa por cima, quando clicado ou quando ativo */
+            .btn-outline-navy:hover,
+            .btn-outline-navy:focus,
+            .btn-outline-navy:active,
+            .btn-outline-navy.active {
+                color: #ffffff;
+                background-color: #041d36;
+                border-color: #041d36;
+            }
+
+            .btn-siccau {
+                background-color: #041d36;
+                color: #ffffff;
+                
+            }
+
+            .btn-siccau:hover {
+                background-color: #041d36d9;
+                color: #ffffff;
+                
+                
+            }
             
         </style>
 
@@ -68,21 +103,38 @@
 
             <h4 class="my-4" style="color: #041d36;">Tabela de atividades profissionais relacionadas à Arquitetura e Urbanismo.</h4>
 
-            <p class="mt-3" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Prezados,</p>
+            <p class="mt-3">
+                Prezados,
+            </p>
 
-            <p class="my-4" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Esta página tem como objetivo auxiliar na identificação de atividades relacionadas à  Arquitetura e Urbanismo de acordo com a e Classificação Nacional de Atividades Econômicas (CNAE) e Resolução nº 21 do CAU/BR, de 05 de abril de 2012.</p>
+            <!-- <p class="my-3">
+                Esta página tem como objetivo auxiliar na identificação de atividades relacionadas à  Arquitetura e Urbanismo de acordo com a e Classificação Nacional de Atividades Econômicas (CNAE) e <a href="https://transparencia.caubr.gov.br/resolucao21/" target="_blank" >Resolução nº 21 do CAU/BR</a>, de 05 de abril de 2012.
+            </p> -->
 
-            <div class="d-flex align-items-center mb-3 my-1">
-                <h6 class="mr-2 mb-0">Opções de busca:</h6>
-                <button type="button" id="btn_busca_filtros" class="btn btn-link px-1 font-weight-bold">| Busca por filtro</button>
-                <button type="button" id="btn_busca_palavra_chave" class="btn btn-link px-1 font-weight-bold">| Busca por palavra chave</button>
-                <a href="cnae-accordion.html" class="btn btn-link px-1 font-weight-bold">| Seções de CNAE |</a>
+            <p class="my-3">
+                Esta página <strong>não substitui a consultoria de um contador</strong> para questões tributárias relacionadas aos CNAEs, tampouco determina o grau de periculosidade das atividades conforme os planos diretores municipais.
+            </p>
+            <p class="my-3">
+                Os CNAEs serão compatibilizados para fins de <strong>cadastro de dados</strong> da Pessoa Jurídica no sistema do CAU.
+            </p>
+            <p class="my-3 mb-4">
+                Para fins de registro de Pessoa Jurídica, será levado em consideração o <strong><u>Objeto Social</u></strong> da empresa, que deverá conter atividades e/ou atribuições de Arquitetura e Urbanismo. Para acessar a <a href="https://transparencia.caubr.gov.br/resolucao21/" target="_blank" >Resolução nº 21 do CAU/BR</a>, que dispõe sobre as <strong>atividades e atribuições profissionais do(a) arquiteto(a) e urbanista</strong>, <a href="https://transparencia.caubr.gov.br/resolucao21/" target="_blank" >clique aqui</a>.
+            </p>
+
+
+            <div class="d-flex align-items-center mb-4 my-1">
+                <h6 class="mb-0 mr-3" style="font-size: 14px; font-weight: 600;">Selecione uma opção de busca:</h6>
+                <button type="button" id="btn_busca_filtros" class="btn btn-outline-navy btn-sm rounded-pill mr-2">Busca por filtro</button>
+                <button type="button" id="btn_busca_palavra_chave" class="btn btn-outline-navy btn-sm rounded-pill mr-2">Busca por palavra-chave</button>
+                <a href="cnae-accordion.html" class="btn btn-outline-navy btn-sm rounded-pill">Seções de CNAE</a>
             </div>
+            
+            
 
 
             <!-- consulta por palavra chave -->
 
-            <div class="mb-3" id="div_busca_palavra_chave" style="display: none">
+            <div class="my-4" id="div_busca_palavra_chave" style="display: none">
                 <h6 class="mt-2 mb-2">Digite o código CNAE, atividade ou campo de atuação:</h6>
                 <div class="" id="">
                     <input class="form-control bg-light input_personalizado" type="text" id="input_busca_palavra_chave" placeholder="Pesquise por Código CNAE, Atividade ou Campo de Atuação...">
@@ -487,7 +539,7 @@
 
                     <!-- botão iniciar a busca pelos filtros selecionados -->
                     <div class="mt-3 mb-4">
-                        <button type="button" id="btn_pesquisar_filtro" class="btn btn-sm btn-primary mr-1" style="width: 100px;">Pesquisar</button>
+                        <button type="button" id="btn_pesquisar_filtro" class="btn btn-sm btn-siccau mr-1" style="width: 100px;">Pesquisar</button>
                         <!-- <button type="button" id="btn_limpar_filtro" class="btn btn-sm btn-danger" style="width: 100px;">Limpar Filtro</button> -->
                     </div>
         
@@ -2213,6 +2265,28 @@
             <div class="text-light p-2 text-center"><strong>CAU/SP</strong></div>
         </div>
 
+        
+        <!-- Modal de Aviso: Filtro Vazio -->
+        <div class="modal fade" id="modalAvisoFiltro" tabindex="-1" role="dialog" aria-labelledby="modalAvisoLabel" aria-hidden="true">
+        <!-- Adicione a classe modal-dialog-centered na linha abaixo -->
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content border-0">
+            <div class="modal-header" style="background-color: #041d36; color: white;">
+                <h5 class="modal-title" id="modalAvisoLabel">Atenção!</h5>
+                <button type="button" class="close text-light" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body py-4">
+                Selecione pelo menos um item em <strong>Código CNAE</strong>, <strong>Código da atividade</strong> ou <strong>Campo de Atuação</strong> antes de clicar em pesquisar.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-siccau btn-sm" data-dismiss="modal">Entendi</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -2253,6 +2327,7 @@
             });
         
 
+
             // --------------- DIVS DE BUSCAS ---------------------------------------------------------------------------
 
             // Exibe/esconde o campo de busca por palavra-chave ao clicar no botão
@@ -2260,11 +2335,17 @@
                 if($('#div_busca_palavra_chave').css('display') === 'none') {
                     $('#div_busca_palavra_chave').css('display', 'block');
                     $('#div_busca_filtros').css('display', 'none');
+                    
+                    // Aplica o azul neste botão e remove do outro
+                    $(this).addClass('active');
+                    $('#btn_busca_filtros').removeClass('active');
                 } else {
                     $('#div_busca_palavra_chave').css('display', 'none');
+                    // Remove o azul se o usuário fechar a aba de busca
+                    $(this).removeClass('active');
                 }
             });
-        
+
             // Exibe/esconde os filtros e limpa o campo de busca por palavra-chave
             $('#btn_busca_filtros').click(function() {
                 if($('#div_busca_filtros').css('display') === 'none') {
@@ -2273,10 +2354,15 @@
                     
                     // limpa a busca por palavra chave
                     $('#input_busca_palavra_chave').val('');
-                    filtrarTabelaPorBusca('input_busca_palavra_chave', 'tabela_cnae')
+                    filtrarTabelaPorBusca('input_busca_palavra_chave', 'tabela_cnae');
 
+                    // Aplica o azul neste botão e remove do outro
+                    $(this).addClass('active');
+                    $('#btn_busca_palavra_chave').removeClass('active');
                 } else {
                     $('#div_busca_filtros').css('display', 'none');
+                    // Remove o azul se o usuário fechar a aba de busca
+                    $(this).removeClass('active');
                 }
             });
 
@@ -2368,8 +2454,24 @@
             });
 
             // Adiciona o evento de clique ao botão
+            // document.getElementById('btn_pesquisar_filtro').addEventListener('click', function() {
+            //     filtrarTabelaPorFiltro(cnaeArray, atividadeArray, atuacaoArray, 'tabela_cnae');
+            // });
+
+            // Adiciona o evento de clique ao botão
             document.getElementById('btn_pesquisar_filtro').addEventListener('click', function() {
-                filtrarTabelaPorFiltro(cnaeArray, atividadeArray, atuacaoArray, 'tabela_cnae');
+                
+                // Verifica se todos os arrays estão vazios
+                if (cnaeArray.length === 0 && atividadeArray.length === 0 && atuacaoArray.length === 0) {
+                    
+                    // Se estiverem vazios, abre o modal de aviso usando jQuery (padrão do Bootstrap)
+                    $('#modalAvisoFiltro').modal('show');
+                    
+                } else {
+                    // Se pelo menos um item foi selecionado, executa a busca normalmente
+                    filtrarTabelaPorFiltro(cnaeArray, atividadeArray, atuacaoArray, 'tabela_cnae');
+                }
+                
             });
 
 
