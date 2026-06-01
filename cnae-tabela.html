@@ -1,159 +1,260 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
+<!--
+  ================================================================
+  cnae-tabela.html — Tabela de Atividades de Arquitetura e Urbanismo
+  ================================================================
+  Histórico:
+    - 02/04/2026: incluída orientação sobre diferença entre CNAE e Objeto Social
+    - 30/04/2026: corrigido o número do CNAE 4319-3/00
+    - Refatoração geral: responsividade, UX aprimorada, código comentado
 
-        <!-- em 02/04/2026 foi incluida a orientação sobre a diferença de cnae e objeto social -->
-        <!-- em 30/04/2026 foi corrigido o número do cnae de 4319-3/00 para 4319-3/00 -->
+  Dependências:
+    - Bootstrap 5.3 (CSS + JS, via CDN)
+    - Bootstrap Icons (via CDN)
+    - arquivo.css  → estilos do componente MultiSelectTag
+    - arquivo.js   → componente MultiSelectTag (classe única, comentada)
+  ================================================================
+-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Atividades A&U — CAU/SP</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- Estilos do MultiSelectTag -->
+    <link rel="stylesheet" href="arquivo.css">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <style>
+        /* ── Variáveis de cor do projeto ─────────────────────────────────────── */
+        :root {
+            --navy:        #041d36;  /* Azul escuro principal */
+            --navy-mid:    #062e57;  /* Azul médio (cabeçalho da tabela) */
+            --navy-light:  #ebf4ff;  /* Azul claríssimo (hover da tabela) */
+            --focus-ring:  rgba(134, 182, 231, 0.4);
+        }
+
+        /* ── Layout geral ─────────────────────────────────────────────────────── */
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 1rem auto;
+            padding: 1.5rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+
+        /* ── Cabeçalho / navbar ───────────────────────────────────────────────── */
+        .site-header {
+            background-color: var(--navy);
+            border-bottom: 2px solid #c5c5c5;
+        }
+
+        /* ── Botões personalizados (paleta navy) ──────────────────────────────── */
+        .btn-outline-navy {
+            color:            var(--navy);
+            border-color:     var(--navy);
+            background-color: transparent;
+        }
+        .btn-outline-navy:hover,
+        .btn-outline-navy:focus,
+        .btn-outline-navy:active,
+        .btn-outline-navy.active {
+            color:            #fff;
+            background-color: var(--navy);
+            border-color:     var(--navy);
+        }
+
+        .btn-navy {
+            background-color: var(--navy);
+            border-color:     var(--navy);
+            color:            #fff;
+        }
+        .btn-navy:hover {
+            background-color: #062e57;
+            border-color:     #062e57;
+            color:            #fff;
+        }
+
+        /* ── Cabeçalho da tabela ──────────────────────────────────────────────── */
+        /* Sem white-space: nowrap — as colunas respeitam o colgroup e quebram linha
+           naturalmente se necessário, mantendo o alinhamento proporcional. */
+        .thead-navy th {
+            background-color: var(--navy-mid);
+            color:            #fff;
+            border:           none;
+        }
+
+        /* Largura mínima das células para evitar quebras excessivas em telas pequenas */
+        #tabela_cnae td,
+        #tabela_cnae th {
+            vertical-align: middle;
+            word-break:     break-word;
+            padding:        0.6rem 0.9rem;
+        }
+
+        /* ── Hover das linhas da tabela ───────────────────────────────────────── */
+        .table-hover tbody tr:hover td {
+            background-color: var(--navy-light);
+        }
+
+        /* ── Foco nos inputs ─────────────────────────────────────────────────── */
+        .input-personalizado:focus {
+            border-color: #14395d84 !important;
+            box-shadow:   0 0 0 0.2rem var(--focus-ring) !important;
+            outline:      none;
+        }
+
+        /* ── Contador de resultados ───────────────────────────────────────────── */
+        #contador-resultados {
+            font-size:   0.82rem;
+            color:       #6c757d;
+            margin-top:  0.4rem;
+        }
+
+        /* ── Tabela responsiva: scroll horizontal em telas pequenas ───────────── */
+        .table-responsive {
+            border-radius: 6px;
+            overflow:      hidden;
+        }
+
+        /* ── Animação suave ao mostrar/ocultar painéis de busca ──────────────── */
+        .painel-busca {
+            animation: slideDown 0.15s ease;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Rodapé ───────────────────────────────────────────────────────────── */
+        .site-footer {
+            background-color: var(--navy);
+            color:            #fff;
+            text-align:       center;
+            padding:          0.6rem;
+            font-size:        0.9rem;
+            margin-top:       2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================================================================
+         CABEÇALHO
+         ================================================================ -->
+    <header class="site-header">
+        <nav class="navbar justify-content-center">
+            <h5 class="text-white my-2 text-center">
+                Atividades relacionadas à Arquitetura e Urbanismo
+            </h5>
+        </nav>
+    </header>
 
 
-        
-        <!-- Meta tags Obrigatórias -->
-        <meta charset="utf-8">
+    <!-- ================================================================
+         CONTEÚDO PRINCIPAL
+         ================================================================ -->
+    <main class="page-container">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <h4 class="mb-4" style="color: var(--navy);">
+            Tabela de atividades profissionais relacionadas à Arquitetura e Urbanismo
+        </h4>
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-        <!-- seleção personalizada -->
-        <link rel="stylesheet" href="arquivo.css">
-
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-
-        <title>Atividades A&U</title>
-
-        <style>
-
-            body {
-                /* font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0; */
-                background-color: #f4f4f9;
-            }
-
-            .container {
-                max-width: 1200px;
-                margin: 10px auto;
-                padding: 20px;
-                background-color: white;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .input_personalizado:focus {
-                border-color: #14395d84 !important;
-                box-shadow: 0 0 0 0.2rem #86b6e773 !important;
-                outline: none;
-            }
-
-            /* Criação do botão com o azul personalizado da sua página */
-            /* Criação do botão com o azul personalizado da sua página */
-            .btn-outline-navy {
-                color: #041d36;
-                border-color: #041d36;
-                background-color: transparent; /* <-- ADICIONE ESTA LINHA */
-            }
-
-
-
-            /* Comportamento quando o mouse passa por cima, quando clicado ou quando ativo */
-            .btn-outline-navy:hover,
-            .btn-outline-navy:focus,
-            .btn-outline-navy:active,
-            .btn-outline-navy.active {
-                color: #ffffff;
-                background-color: #041d36;
-                border-color: #041d36;
-            }
-
-            .btn-siccau {
-                background-color: #041d36;
-                color: #ffffff;
-                
-            }
-
-            .btn-siccau:hover {
-                background-color: #041d36d9;
-                color: #ffffff;
-                
-                
-            }
-
-            /* Cabeçalho da tabela personalizado */
-            .thead-navy {
-                background-color: #062e57;
-                color: #ffffff;
-            }
-
-            /* Cor da linha da tabela ao passar o mouse (Hover) - Azul bem claro */
-            .table-hover tbody tr:hover {
-                background-color: #f0f8ff !important; /* Tom suave de azul (AliceBlue) */
-            }
-            
-        </style>
-
-    </head>
-
-    <body>
-
-        <header>
-            <nav class="navbar justify-content-center" style="border-bottom: 2px solid #c5c5c5; background-color: #041d36;" >
-                <h5 class="text-light my-2 text-center" >Atividades relacionadas à Arquitetura e Urbanismo</h5>
-            </nav>
-        </header>
-
-        <div class="container">
-
-            <h4 class="my-4" style="color: #041d36;">Tabela de atividades profissionais relacionadas à Arquitetura e Urbanismo.</h4>
-
-            <p class="mt-3">
-                Prezados,
+        <!-- Aviso informativo -->
+        <div class="alert alert-warning alert-dismissible fade show mb-4" style="font-size: 0.9rem;" role="alert">
+            <p class="mb-1">
+                <i class="bi bi-exclamation-triangle me-1"></i>
+                <strong>Atenção:</strong> esta página <strong>não substitui a consultoria de um contador</strong>
+                para questões tributárias relacionadas aos CNAEs, tampouco determina o grau de periculosidade
+                das atividades conforme os planos diretores municipais.
             </p>
-
-            <!-- <p class="my-3">
-                Esta página tem como objetivo auxiliar na identificação de atividades relacionadas à  Arquitetura e Urbanismo de acordo com a e Classificação Nacional de Atividades Econômicas (CNAE) e <a href="https://transparencia.caubr.gov.br/resolucao21/" target="_blank" >Resolução nº 21 do CAU/BR</a>, de 05 de abril de 2012.
-            </p> -->
-
-            <p class="my-3">
-                Esta página <strong>não substitui a consultoria de um contador</strong> para questões tributárias relacionadas aos CNAEs, tampouco determina o grau de periculosidade das atividades conforme os planos diretores municipais.
+            <p class="mb-1">
+                Os CNAEs serão compatibilizados para fins de <strong>cadastro de dados</strong>
+                da Pessoa Jurídica no sistema do CAU.
             </p>
-            <p class="my-3">
-                Os CNAEs serão compatibilizados para fins de <strong>cadastro de dados</strong> da Pessoa Jurídica no sistema do CAU.
+            <p class="mb-0">
+                Para fins de registro de Pessoa Jurídica, será levado em consideração o
+                <strong><u>Objeto Social</u></strong> da empresa, que deverá conter atividades e/ou atribuições
+                de Arquitetura e Urbanismo. Para acessar a <strong>Resolução nº&nbsp;21 do CAU/BR</strong>,
+                que dispõe sobre as <strong>atividades e atribuições profissionais do(a) arquiteto(a) e urbanista</strong>,
+                <a href="https://transparencia.caubr.gov.br/resolucao21/" target="_blank">clique aqui</a>.
             </p>
-            <p class="my-3 mb-4">
-                Para fins de registro de Pessoa Jurídica, será levado em consideração o <strong><u>Objeto Social</u></strong> da empresa, que deverá conter atividades e/ou atribuições de Arquitetura e Urbanismo. Para acessar a <a href="https://transparencia.caubr.gov.br/resolucao21/" target="_blank" >Resolução nº 21 do CAU/BR</a>, que dispõe sobre as <strong>atividades e atribuições profissionais do(a) arquiteto(a) e urbanista</strong>, <a href="https://transparencia.caubr.gov.br/resolucao21/" target="_blank" >clique aqui</a>.
-            </p>
+            <button type="button" class="btn-close" onclick="fecharAlerta(this)" aria-label="Fechar"></button>
+        </div>
 
 
-            <div class="d-flex align-items-center mb-4 my-1">
-                <h6 class="mb-0 mr-3" style="font-size: 14px; font-weight: 600;">Selecione uma opção de busca:</h6>
-                <button type="button" id="btn_busca_filtros" class="btn btn-outline-navy btn-sm rounded-pill mr-2">Busca por filtro</button>
-                <button type="button" id="btn_busca_palavra_chave" class="btn btn-outline-navy btn-sm rounded-pill mr-2">Busca por palavra-chave</button>
-                <a href="cnae-accordion.html" class="btn btn-outline-navy btn-sm rounded-pill">Seções de CNAE</a>
+        <!-- ── Botões de seleção do modo de busca ──────────────────────────── -->
+        <!--
+            Três modos disponíveis:
+            1. "Busca por filtro"        → selects múltiplos por CNAE, Atividade e Campo de Atuação
+            2. "Busca por palavra-chave" → campo de texto livre que filtra a tabela em tempo real
+            3. "Seções de CNAE"          → link para a outra página (accordion)
+        -->
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-4">
+            <span class="fw-semibold" style="font-size: 0.9rem;">Selecione uma opção de busca:</span>
+            <button type="button" id="btn_busca_filtros"       class="btn btn-outline-navy btn-sm rounded-pill">Busca por filtro</button>
+            <button type="button" id="btn_busca_palavra_chave" class="btn btn-outline-navy btn-sm rounded-pill">Busca por palavra-chave</button>
+            <a href="cnae-accordion.html"                      class="btn btn-outline-navy btn-sm rounded-pill">Seções de CNAE</a>
+        </div>
+
+
+        <!-- ── Painel: Busca por palavra-chave ─────────────────────────────── -->
+        <!--
+            Campo de texto único. Filtra a tabela em tempo real à medida
+            que o usuário digita. Suporta múltiplas palavras (AND implícito)
+            e ignora acentos.
+        -->
+        <div id="div_busca_palavra_chave" class="painel-busca mb-4" style="display: none;">
+            <label for="input_busca_palavra_chave" class="form-label fw-semibold">
+                Digite o código CNAE, atividade ou campo de atuação:
+            </label>
+            <div class="input-group">
+                <span class="input-group-text bg-white border-end-0">
+                    <i class="bi bi-search text-muted"></i>
+                </span>
+                <input
+                    class="form-control border-start-0 input-personalizado"
+                    type="text"
+                    id="input_busca_palavra_chave"
+                    placeholder="Ex: 7111, projeto arquitetônico, conforto ambiental..."
+                    autocomplete="off"
+                >
+                <!-- Botão para limpar o campo de busca -->
+                <button class="btn btn-outline-secondary" type="button" id="btn_limpar_palavra_chave" title="Limpar busca">
+                    <i class="bi bi-x-lg"></i>
+                </button>
             </div>
-            
-            
+        </div>
 
 
-            <!-- consulta por palavra chave -->
+        <!-- ── Painel: Busca por filtro (selects múltiplos) ────────────────── -->
+        <!--
+            Três selects de múltipla seleção com busca embutida (MultiSelectTag).
+            O usuário pode combinar filtros das três colunas.
+            Clicando em "Pesquisar", a tabela é filtrada conforme os itens marcados.
+            Clicando em "Limpar", todos os filtros são removidos e a tabela é restaurada.
+        -->
+        <div id="div_busca_filtros" class="painel-busca mb-4" style="display: none;">
 
-            <div class="my-4" id="div_busca_palavra_chave" style="display: none">
-                <h6 class="mt-2 mb-2">Digite o código CNAE, atividade ou campo de atuação:</h6>
-                <div class="" id="">
-                    <input class="form-control bg-light input_personalizado" type="text" id="input_busca_palavra_chave" placeholder="Pesquise por Código CNAE, Atividade ou Campo de Atuação...">
-                </div>
-            </div>
+            <div class="row g-3">
 
-            <!-- consulta por filtro -->
-
-            <div class="mb-" id="div_busca_filtros" style="display: none">
-
-                <!-- Código CNAE -->
-                <div class="my-3">
-                    <h6 class="mt-2 mb-1">Código CNAE:</h6>
-                    <select class="" id="input_codigo_cnae" name="list" multiple>
-
+                <!-- Filtro por Código CNAE -->
+                <div class="col-12 col-lg-4">
+                    <label class="form-label fw-semibold mb-1">Código CNAE:</label>
+                    <select id="input_codigo_cnae" name="list" multiple>
                         <!-- novos -->
                         <option value="2330-3/01 - Fabricação de estruturas pré moldadas de concreto armado, em série e sob encomenda">2330-3/01 - Fabricação de estruturas pré moldadas de concreto armado, em série e sob encomenda</option>
                         <option value="2330-3/02 - Fabricação de artefatos de cimento para uso na construção">2330-3/02 - Fabricação de artefatos de cimento para uso na construção</option>
@@ -220,16 +321,13 @@
                         <option value="8599-6/04 - Treinamento em desenvolvimento profissional e gerencial">8599-6/04 - Treinamento em desenvolvimento profissional e gerencial</option>
                         <option value="9102-3/02 - Restauração e conservação de lugares e prédios históricos">9102-3/02 - Restauração e conservação de lugares e prédios históricos</option>
                         <option value="9001-9/06 - Atividades de sonorização e de iluminação">9001-9/06 - Atividades de sonorização e de iluminação</option>
-
-                       
                     </select>
                 </div>
-            
-                <!-- Código da Atividade -->
 
-                <div class="my-3">
-                    <h6 class="mt-2 mb-1">Código da atividade na Resolução nº 21 do CAU/BR:</h6>
-                    <select class="" id="input_codigo_atividade" name="list" multiple>
+                <!-- Filtro por Código de Atividade (Resolução 21) -->
+                <div class="col-12 col-lg-4">
+                    <label class="form-label fw-semibold mb-1">Código de Atividade - Res. nº 21 do CAU/BR:</label>
+                    <select id="input_codigo_atividade" name="list" multiple>
                         <option value="1.1.1. Levantamento arquitetônico">1.1.1. Levantamento arquitetônico</option>
                         <option value="1.1.2. Projeto arquitetônico">1.1.2. Projeto arquitetônico</option>
                         <option value="1.1.3. Projeto arquitetônico de reforma">1.1.3. Projeto arquitetônico de reforma</option>
@@ -498,12 +596,11 @@
                         <option value="7.8.9. Dispositivos de segurança">7.8.9. Dispositivos de segurança</option>
                     </select>
                 </div>
-            
-                <!-- Campo de Atuação -->
 
-                <div class="my-3">
-                    <h6 class="mt-2 mb-1">Campo de Atuação:</h6>
-                    <select class="" id="input_campo_atuacao" name="list" multiple>
+                <!-- Filtro por Campo de Atuação -->
+                <div class="col-12 col-lg-4">
+                    <label class="form-label fw-semibold mb-1">Campo de Atuação:</label>
+                    <select id="input_campo_atuacao" name="list" multiple>
                         <option value="Arquitetura de interiores">Arquitetura de interiores</option>
                         <option value="Arquitetura de Interiores, concepção e execução de projetos">Arquitetura de Interiores, concepção e execução de projetos</option>
                         <option value="Arquitetura e Urbanismo, concepção e execução de projetos">Arquitetura e Urbanismo, concepção e execução de projetos</option>
@@ -539,35 +636,67 @@
                     </select>
                 </div>
 
-                <div>
+            </div><!-- /row -->
 
-                    <!-- botão iniciar a busca pelos filtros selecionados -->
-                    <div class="mt-3 mb-4">
-                        <button type="button" id="btn_pesquisar_filtro" class="btn btn-sm btn-siccau mr-1" style="width: 100px;">Pesquisar</button>
-                        <!-- <button type="button" id="btn_limpar_filtro" class="btn btn-sm btn-danger" style="width: 100px;">Limpar Filtro</button> -->
-                    </div>
-        
-                </div>
-            
+            <!-- Botões de ação dos filtros -->
+            <div class="d-flex gap-2 mt-3">
+                <button type="button" id="btn_pesquisar_filtro" class="btn btn-navy btn-sm px-4">
+                    <i class="bi bi-funnel-fill me-1"></i> Pesquisar
+                </button>
+                <button type="button" id="btn_limpar_filtro" class="btn btn-outline-secondary btn-sm px-3">
+                    <i class="bi bi-x-circle me-1"></i> Limpar filtros
+                </button>
             </div>
-            
+
+        </div><!-- /div_busca_filtros -->
 
 
+        <!-- ── Contador de resultados ─────────────────────────────────────── -->
+        <div id="contador-resultados" aria-live="polite"></div>
 
 
-            <table class="table table-hover table-bordered mt-4" id="tabela_cnae">
-                <!-- Trocamos thead-light por thead-navy aqui -->
+        <!-- ── Tabela de CNAEs ─────────────────────────────────────────────── -->
+        <!--
+            A tabela contém 330 linhas com três colunas:
+            1. Código CNAE
+            2. Código da atividade (Resolução 21 do CAU/BR)
+            3. Campo de Atuação
+
+            O scroll horizontal é ativado automaticamente em telas estreitas.
+        -->
+        <div class="table-responsive mt-2">
+            <table class="table table-hover table-bordered table-sm" id="tabela_cnae">
+
+                <!--
+                    colgroup define larguras fixas proporcionais para cada coluna:
+                    - Código CNAE:      30% — textos moderados como "7111-1/00 - Serviços de arquitetura"
+                    - Código atividade: 40% — textos mais longos como "1.5.11. Projeto de cabeamento..."
+                    - Campo de Atuação: 30% — textos médios como "Conforto Ambiental"
+                -->
+                <colgroup>
+                    <col style="width: 30%;">
+                    <col style="width: 40%;">
+                    <col style="width: 30%;">
+                </colgroup>
+
                 <thead class="thead-navy">
                     <tr>
-                        <th class="align-middle border-0">Código CNAE</th>
-                        <th class="align-middle border-0">Código da atividade na Resolução nº 21 do CAU/BR</th>
-                        <th class="align-middle border-0">Campo de Atuação</th>
+                        <th class="align-middle py-2">Código CNAE</th>
+                        <th class="align-middle py-2">Código da atividade — Resolução nº&nbsp;21 do CAU/BR</th>
+                        <th class="align-middle py-2">Campo de Atuação</th>
                     </tr>
                 </thead>
 
                 <tbody>
+                    <!-- Linha exibida quando nenhum resultado é encontrado -->
+                    <tr id="linha-sem-resultado" style="display:none;">
+                        <td colspan="3" class="text-center text-muted py-4">
+                            <i class="bi bi-search me-1"></i>
+                            Nenhum resultado encontrado. Tente outros termos ou filtros.
+                        </td>
+                    </tr>
 
-                    <tr>
+                                        <tr>
                         <td>7111-1/00 - Serviços de arquitetura</td>
                         <td>1.1.1. Levantamento arquitetônico</td>
                         <td>Arquitetura e Urbanismo, concepção e execução de projetos</td>
@@ -612,7 +741,6 @@
                         <td>1.3.2. Projeto de luminotecnia</td>
                         <td>Conforto Ambiental</td>
                     </tr>
-
                     <tr>
                         <td>7111-1/00 - Serviços de arquitetura</td>
                         <td>1.4.1. Projeto de arquitetura de interiores</td>
@@ -900,63 +1028,54 @@
                     </tr>
                     <tr>
                         <td>7111-1/00 - Serviços de arquitetura</td>
-                        <td>5.1. ASSESSORIA <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</strong></td>
+                        <td>5.1. ASSESSORIA <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</td>
                         <td>ATIVIDADES ESPECIAIS</td>
                     </tr>
                     <tr>
                         <td>7111-1/00 - Serviços de arquitetura</td>
-                        <td>5.2. CONSULTORIA <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</strong></td>
+                        <td>5.2. CONSULTORIA <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</td>
                         <td>ATIVIDADES ESPECIAIS</td>
                     </tr>
-
                     <tr>
                         <td>7111-1/00 - Serviços de arquitetura</td>
-                        <td>5.4. VISTORIA <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</strong></td>
+                        <td>5.4. VISTORIA <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</td>
                         <td>ATIVIDADES ESPECIAIS</td>
                     </tr>
-
                     <tr>
                         <td>7111-1/00 - Serviços de arquitetura</td>
-                        <td>5.5. PERÍCIA <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</strong></td>
+                        <td>5.5. PERÍCIA <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</td>
                         <td>ATIVIDADES ESPECIAIS</td>
                     </tr>
-
                     <tr>
                         <td>7111-1/00 - Serviços de arquitetura</td>
-                        <td>5.6. AVALIAÇÃO <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</strong></td>
+                        <td>5.6. AVALIAÇÃO <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</td>
                         <td>ATIVIDADES ESPECIAIS</td>
                     </tr>
-
                     <tr>
                         <td>7111-1/00 - Serviços de arquitetura</td>
-                        <td>5.7. LAUDO TÉCNICO <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</strong></td>
+                        <td>5.7. LAUDO TÉCNICO <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</td>
                         <td>ATIVIDADES ESPECIAIS</td>
                     </tr>
-
                     <tr>
                         <td>7111-1/00 - Serviços de arquitetura</td>
-                        <td>5.8. PARECER TÉCNICO <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</strong></td>
+                        <td>5.8. PARECER TÉCNICO <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</td>
                         <td>ATIVIDADES ESPECIAIS</td>
                     </tr>
-
                     <tr>
                         <td>7111-1/00 - Serviços de arquitetura</td>
-                        <td>5.9. AUDITORIA <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</strong></td>
+                        <td>5.9. AUDITORIA <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</td>
                         <td>ATIVIDADES ESPECIAIS</td>
                     </tr>
-
                     <tr>
                         <td>7111-1/00 - Serviços de arquitetura</td>
-                        <td>5.10. MENSURAÇÃO <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</strong></td>
+                        <td>5.10. MENSURAÇÃO <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</td>
                         <td>ATIVIDADES ESPECIAIS</td>
                     </tr>
-
                     <tr>
                         <td>7111-1/00 - Serviços de arquitetura</td>
-                        <td>5.11. MENSURAÇÃO <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</strong></td>
+                        <td>5.11. MENSURAÇÃO <strong>(Relacionados a Arquitetura, Urbanismo, planejamento e paisagismo)</td>
                         <td>ATIVIDADES ESPECIAIS</td>
                     </tr>
-
                     <tr>
                         <td>7112-0/00 - Serviços de engenharia</td>
                         <td>1.2.1. Projeto de estrutura de madeira</td>
@@ -1149,7 +1268,7 @@
                     </tr>
                     <tr>
                         <td>7112-0/00 - Serviços de engenharia</td>
-                        <td>3.3. <strong>DIREÇÃO OU CONDUÇÃO DE OBRA</strong> OU SERVIÇO TÉCNICO</strong></td>
+                        <td>3.3. <strong>DIREÇÃO OU CONDUÇÃO DE OBRA</strong> OU SERVIÇO TÉCNICO</td>
                         <td>GESTÃO</td>
                     </tr>
                     <tr>
@@ -1212,7 +1331,6 @@
                         <td>5.11. MENSURAÇÃO</td>
                         <td>ATIVIDADES ESPECIAIS</td>
                     </tr>
-
                     <tr>
                         <td>7119-7/01 - Serviços de cartografia, topografia e geodésia</td>
                         <td>4.1.3. Georreferenciamento</td>
@@ -1258,9 +1376,6 @@
                         <td>1.8.1. Levantamento cadastral</td>
                         <td>Topografia, elaboração e interpretação de levantamentos topográficos cadastrais para a realização de projetos de arquitetura, de urbanismo e de paisagismo</td>
                     </tr>
-
-
-
                     <tr>
                         <td>7119-7/04 - Serviços de perícia técnica relacionados à segurança do trabalho</td>
                         <td>7.1.1. Plano da gestão de segurança do trabalho</td>
@@ -1406,8 +1521,6 @@
                         <td>7.8.10. Segurança em instalações elétricas</td>
                         <td>Engenharia de segurança do trabalho</td>
                     </tr>
-
-
                     <tr>
                         <td>7119-7/04 - Serviços de perícia técnica relacionados à segurança do trabalho</td>
                         <td>7.8.11. Segurança para operação de elevadores e guindastes</td>
@@ -1508,13 +1621,11 @@
                         <td>6.3.5. Estudo e correção de patologias da construção</td>
                         <td>Tecnologia e resistência dos materiais, dos elementos e produtos de construção, patologias e recuperações</td>
                     </tr>
-
                     <tr>
                         <td>7210-0/00 - Pesquisa e desenvolvimento experimental em ciências físicas e naturais</td>
                         <td>6.3.7. Ensaio de materiais</td>
                         <td>Tecnologia e resistência dos materiais, dos elementos e produtos de construção, patologias e recuperações</td>
                     </tr>
-
                     <tr>
                         <td>7410-2/02 - Design de Interiores</td>
                         <td>1.4.1. Projeto de arquitetura de interiores</td>
@@ -1530,9 +1641,6 @@
                         <td>1.3.2. Projeto de luminotecnia</td>
                         <td>Conforto Ambiental</td>
                     </tr>
-
-                    
-
                     <tr>
                         <td>7410-2/03 - Design de produtos</td>
                         <td>1.4.3. Projeto de mobiliário</td>
@@ -1573,7 +1681,6 @@
                         <td>2.1.2. Execução de reforma de edificação</td>
                         <td>Execução - Arquitetura das edificações</td>
                     </tr>
-
                     <tr>
                         <td>4120-4/00 - Construção de edifícios</td>
                         <td>2.1.4. Execução de monumento</td>
@@ -1669,8 +1776,6 @@
                         <td>2.9.2.3. Execução de obra de requalificação habitacional</td>
                         <td>Execução - Patrimônio arquitetônico, urbanístico e paisagístico</td>
                     </tr>
-
-                    
                     <tr>
                         <td>4213-8/00 - Obras de urbanização - Ruas, praças e calçadas</td>
                         <td>2.6.1. Execução de obra de arquitetura paisagística</td>
@@ -1776,8 +1881,6 @@
                         <td>2.8.1. Execução de terraplenagem, drenagem e pavimentação</td>
                         <td>Execução - Instalações e equipamentos referentes à arquitetura</td>
                     </tr>
-
-                    
                     <tr>
                         <td>4321-5/00 - Instalação e manutenção elétrica</td>
                         <td>2.3.2. Execução de instalações de luminotecnia</td>
@@ -1918,8 +2021,6 @@
                         <td>2.2.6. Execução de outras estruturas</td>
                         <td>Execução - Sistemas construtivos e estruturais</td>
                     </tr>
-
-                    
                     <tr>
                         <td>4399-1/01 - Administração de Obras</td>
                         <td>3.2. SUPERVISÃO DE OBRA OU SERVIÇO TÉCNICO</td>
@@ -2050,8 +2151,6 @@
                         <td>1.11.2.4. Projeto urbanístico setorial</td>
                         <td>Patrimônio arquitetônico, urbanístico e paisagístico</td>
                     </tr>
-
-                    
                     <tr>
                         <td>9102-3/02 - Restauração e conservação de lugares e prédios históricos</td>
                         <td>1.11.2.5. Projeto de requalificação de espaços públicos</td>
@@ -2169,321 +2268,366 @@
                     </tr>
                     <tr>
                         <td>6821-8/01 - Corretagem na compra e venda e avaliação de imóveis</td>
-                        <td>5.6. AVALIAÇÃO <STRONG>(Para fins imobiliários)</STRONG></td>
+                        <td>5.6. AVALIAÇÃO <strong>(Para fins imobiliários)</td>
                         <td>ATIVIDADES ESPECIAIS</td>
                     </tr>
-
-
                     <tr>
                         <td>2330-3/01 - Fabricação de estruturas pré moldadas de concreto armado, em série e sob encomenda</td>
-                        <td>6.3.6. Padronização de produto para a construção</STRONG></td>
+                        <td>6.3.6. Padronização de produto para a construção</td>
                         <td>Tecnologia e resistência dos materiais, dos elementos e produtos de construção, patologias e recuperações</td>
                     </tr>
-
                     <tr>
                         <td>2330-3/01 - Fabricação de estruturas pré moldadas de concreto armado, em série e sob encomenda</td>
-                        <td>6.3.8. Controle de qualidade de construção ou produto</STRONG></td>
+                        <td>6.3.8. Controle de qualidade de construção ou produto</td>
                         <td>Tecnologia e resistência dos materiais, dos elementos e produtos de construção, patologias e recuperações</td>
                     </tr>
-
                     <tr>
                         <td>2330-3/02 - Fabricação de artefatos de cimento para uso na construção</td>
-                        <td>6.3.6. Padronização de produto para a construção</STRONG></td>
+                        <td>6.3.6. Padronização de produto para a construção</td>
                         <td>Tecnologia e resistência dos materiais, dos elementos e produtos de construção, patologias e recuperações</td>
                     </tr>
-
                     <tr>
                         <td>2330-3/02 - Fabricação de artefatos de cimento para uso na construção</td>
-                        <td>6.3.8. Controle de qualidade de construção ou produto</STRONG></td>
+                        <td>6.3.8. Controle de qualidade de construção ou produto</td>
                         <td>Tecnologia e resistência dos materiais, dos elementos e produtos de construção, patologias e recuperações</td>
                     </tr>
-
                     <tr>
                         <td>2330-3/99 - Fabricação de outros artefatos e produtos de concreto, cimento, fibrocimento, gesso e materiais semelhantes</td>
-                        <td>6.3.6. Padronização de produto para a construção</STRONG></td>
+                        <td>6.3.6. Padronização de produto para a construção</td>
                         <td>Tecnologia e resistência dos materiais, dos elementos e produtos de construção, patologias e recuperações</td>
                     </tr>
-
                     <tr>
                         <td>2330-3/99 - Fabricação de outros artefatos e produtos de concreto, cimento, fibrocimento, gesso e materiais semelhantes</td>
-                        <td>6.3.8. Controle de qualidade de construção ou produto</STRONG></td>
+                        <td>6.3.8. Controle de qualidade de construção ou produto</td>
                         <td>Tecnologia e resistência dos materiais, dos elementos e produtos de construção, patologias e recuperações</td>
                     </tr>
-
                     <tr>
                         <td>2599-3/01 - Serviços de confecção de armações metálicas para a construção</td>
-                        <td>6.3.6. Padronização de produto para a construção</STRONG></td>
+                        <td>6.3.6. Padronização de produto para a construção</td>
                         <td>Tecnologia e resistência dos materiais, dos elementos e produtos de construção, patologias e recuperações</td>
                     </tr>
-
                     <tr>
                         <td>2599-3/01 - Serviços de confecção de armações metálicas para a construção</td>
-                        <td>6.3.8. Controle de qualidade de construção ou produto</STRONG></td>
+                        <td>6.3.8. Controle de qualidade de construção ou produto</td>
                         <td>Tecnologia e resistência dos materiais, dos elementos e produtos de construção, patologias e recuperações</td>
                     </tr>
-
                     <tr>
                         <td>4211-1/01 - Construção de rodovias e ferrovias</td>
                         <td>2.8.1. Execução de terraplenagem, drenagem e pavimentação</td>
                         <td>Execução - Instalações e equipamentos referente ao urbanismo</td>
                     </tr>
-
                     <tr>
                         <td>4211-1/02 - Pintura para sinalização em pistas rodoviárias e aeroportos</td>
                         <td>2.8.3. Execução de comunicação visual urbanística</td>
-                        <td>Execução - Instalações e equipamentos referente ao urbanismo</td>     
+                        <td>Execução - Instalações e equipamentos referente ao urbanismo</td>
                     </tr>
                     <tr>
                         <td>4211-1/02 - Pintura para sinalização em pistas rodoviárias e aeroportos</td>
-                        <td>2.8.4. Execução de obra de sinalização viária</STRONG></td>
-                        <td>Execução - Instalações e equipamentos referente ao urbanismo</td>                 
+                        <td>2.8.4. Execução de obra de sinalização viária</td>
+                        <td>Execução - Instalações e equipamentos referente ao urbanismo</td>
                     </tr>
-
                     <tr>
                         <td>3811-4/00 - Coleta de resíduos não perigosos</td>
-                        <td>2.8.5. Implantação de sistema de coleta de resíduos sólidos</STRONG></td>
+                        <td>2.8.5. Implantação de sistema de coleta de resíduos sólidos</td>
                         <td>Execução - Instalações e equipamentos referente ao urbanismo</td>
                     </tr>
-
                     <tr>
                         <td>9001-9/06 - Atividades de sonorização e de iluminação</td>
-                        <td>2.3.2. Execução de instalações de luminotecnia</STRONG></td>
+                        <td>2.3.2. Execução de instalações de luminotecnia</td>
                         <td>Execução - Conforto Ambiental</td>
                     </tr>
-
                     <tr>
                         <td>9001-9/06 - Atividades de sonorização e de iluminação</td>
-                        <td>2.3.4. Execução de instalações de sonorização</STRONG></td>
+                        <td>2.3.4. Execução de instalações de sonorização</td>
                         <td>Execução - Conforto Ambiental</td>
                     </tr>
-
                     <tr>
                         <td>4212-0/00 Construção de obras de arte especiais</td>
-                        <td>2.8.1. Execução de terraplenagem, drenagem e pavimentação</STRONG></td>
+                        <td>2.8.1. Execução de terraplenagem, drenagem e pavimentação</td>
                         <td>Execução - Instalações e equipamentos referente ao urbanismo</td>
                     </tr>
-                    
-                </tbody>  
+
+                </tbody>
+
             </table>
-        </div>
+        </div><!-- /table-responsive -->
 
-        <div style="background-color: #041d36;">
-            <div class="text-light p-2 text-center"><strong>CAU/SP</strong></div>
-        </div>
+    </main><!-- /page-container -->
 
-        
-        <!-- Modal de Aviso: Filtro Vazio -->
-        <div class="modal fade" id="modalAvisoFiltro" tabindex="-1" role="dialog" aria-labelledby="modalAvisoLabel" aria-hidden="true">
-        <!-- Adicione a classe modal-dialog-centered na linha abaixo -->
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content border-0">
-            <div class="modal-header" style="background-color: #041d36; color: white;">
-                <h5 class="modal-title" id="modalAvisoLabel">Atenção!</h5>
-                <button type="button" class="close text-light" data-dismiss="modal" aria-label="Fechar">
-                <span aria-hidden="true">&times;</span>
-                </button>
+
+    <!-- ================================================================
+         RODAPÉ
+         ================================================================ -->
+    <footer class="site-footer">
+        <strong>Conselho de Arquitetura e Urbanismo de São Paulo - CAU/SP</strong>
+    </footer>
+
+
+    <!-- ================================================================
+         MODAL: aviso quando o usuário clica em "Pesquisar" sem selecionar filtros
+         ================================================================ -->
+    <div class="modal fade" id="modalAvisoFiltro" tabindex="-1" aria-labelledby="modalAvisoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header" style="background-color: var(--navy); color: #fff;">
+                    <h5 class="modal-title" id="modalAvisoLabel">
+                        <i class="bi bi-exclamation-circle me-1"></i> Atenção
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body py-4">
+                    Selecione pelo menos um item em <strong>Código CNAE</strong>,
+                    <strong>Código da atividade</strong> ou <strong>Campo de Atuação</strong>
+                    antes de clicar em pesquisar.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-navy btn-sm" data-bs-dismiss="modal">Entendi</button>
+                </div>
             </div>
-            <div class="modal-body py-4">
-                Selecione pelo menos um item em <strong>Código CNAE</strong>, <strong>Código da atividade</strong> ou <strong>Campo de Atuação</strong> antes de clicar em pesquisar.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-siccau btn-sm" data-dismiss="modal">Entendi</button>
-            </div>
-            </div>
         </div>
-        </div>
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-        <!-- seleção personalizada -->
-        <script src="arquivo.js"></script>
+    </div>
 
 
-        <script>
-                
-            // --------------- FILTRAR TABELA ---------------------------------------------------------------------------
+    <!-- ================================================================
+         SCRIPTS
+         ================================================================ -->
 
-            // Função para remover acentos de uma string
-            function removeAccents(text) {
-                return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            }
-        
-            // Função para filtrar a tabela com base no campo de busca
-            function filtrarTabelaPorBusca(input_busca_palavra_chave, tabela_cnae) {
-                const searchValue = removeAccents(document.getElementById(input_busca_palavra_chave).value.toLowerCase());
-                const searchWords = searchValue.split(' ').filter(Boolean);
-                const rows = document.querySelectorAll(`#${tabela_cnae} tbody tr`);
-        
-                rows.forEach(row => {
-                    const cells = row.querySelectorAll('td');
-                    const rowText = Array.from(cells).map(cell => removeAccents(cell.textContent.toLowerCase())).join(' ');
-        
-                    // Verifica se todas as palavras estão na linha
-                    const match = searchWords.every(word => rowText.includes(word));
-                    row.style.display = match ? '' : 'none';
-                });
-            }
+    <!-- Bootstrap 5 JS (inclui Popper.js embutido) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    
-            // Adiciona o evento 'keyup' ao campo de busca para chamar a função de filtragem
-            document.getElementById('input_busca_palavra_chave').addEventListener('keyup', function() {
-                filtrarTabelaPorBusca('input_busca_palavra_chave', 'tabela_cnae');
-            });
-        
+    <!-- Componente MultiSelectTag (refatorado em arquivo.js) -->
+    <script src="arquivo.js"></script>
+
+    <script>
+    // ================================================================
+    //  Lógica da página cnae-tabela.html
+    // ================================================================
 
 
-            // --------------- DIVS DE BUSCAS ---------------------------------------------------------------------------
-
-            // Exibe/esconde o campo de busca por palavra-chave ao clicar no botão
-            $('#btn_busca_palavra_chave').click(function() {
-                if($('#div_busca_palavra_chave').css('display') === 'none') {
-                    $('#div_busca_palavra_chave').css('display', 'block');
-                    $('#div_busca_filtros').css('display', 'none');
-                    
-                    // Aplica o azul neste botão e remove do outro
-                    $(this).addClass('active');
-                    $('#btn_busca_filtros').removeClass('active');
-                } else {
-                    $('#div_busca_palavra_chave').css('display', 'none');
-                    // Remove o azul se o usuário fechar a aba de busca
-                    $(this).removeClass('active');
-                }
-            });
-
-            // Exibe/esconde os filtros e limpa o campo de busca por palavra-chave
-            $('#btn_busca_filtros').click(function() {
-                if($('#div_busca_filtros').css('display') === 'none') {
-                    $('#div_busca_filtros').css('display', 'block');
-                    $('#div_busca_palavra_chave').css('display', 'none');
-                    
-                    // limpa a busca por palavra chave
-                    $('#input_busca_palavra_chave').val('');
-                    filtrarTabelaPorBusca('input_busca_palavra_chave', 'tabela_cnae');
-
-                    // Aplica o azul neste botão e remove do outro
-                    $(this).addClass('active');
-                    $('#btn_busca_palavra_chave').removeClass('active');
-                } else {
-                    $('#div_busca_filtros').css('display', 'none');
-                    // Remove o azul se o usuário fechar a aba de busca
-                    $(this).removeClass('active');
-                }
-            });
-
-            // --------------- SELECAO PERSONALIZADA ---------------------------------------------------------------------------
+    // ── Utilitário: remove acentos de uma string ─────────────────────────────
+    // Usado em todas as funções de filtragem para comparação sem acento.
+    function removerAcentos(texto) {
+        return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
 
 
-            // Função para remover acentos de uma string
-            function removeAccents(text) {
-                return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            }
+    // ── Filtragem por palavra-chave ──────────────────────────────────────────
+    // Lê o valor do input de texto, divide em palavras e verifica se TODAS
+    // estão presentes em alguma célula da linha (busca AND entre palavras).
+    function filtrarPorPalavraChave() {
+        const valor    = removerAcentos(document.getElementById('input_busca_palavra_chave').value.toLowerCase());
+        const palavras = valor.split(' ').filter(Boolean);
+        const linhas   = document.querySelectorAll('#tabela_cnae tbody tr:not(#linha-sem-resultado)');
+        let   visiveis = 0;
 
-            // Função para filtrar a tabela com base nos itens selecionados no filtro
-            function filtrarTabelaPorFiltro(cnaeArray, atividadeArray, atuacaoArray, tabela_cnae) {
-                // Transforma os itens dos filtros em arrays de strings minúsculas e sem acentos
-                const cnaeWords = cnaeArray.map(item => removeAccents(item.value.toLowerCase())); // Acessa item.value
-                const atividadeWords = atividadeArray.map(item => removeAccents(item.value.toLowerCase())); // Acessa item.value
-                const atuacaoWords = atuacaoArray.map(item => removeAccents(item.value.toLowerCase())); // Acessa item.value
-                
-                const rows = document.querySelectorAll(`#${tabela_cnae} tbody tr`);
+        linhas.forEach(linha => {
+            const celulas    = linha.querySelectorAll('td');
+            const textoLinha = Array.from(celulas)
+                .map(c => removerAcentos(c.textContent.toLowerCase()))
+                .join(' ');
 
-                rows.forEach(row => {
-                    const cells = row.querySelectorAll('td');
-                    const cnaeText = removeAccents(cells[0].textContent.toLowerCase());         // Coluna CNAE
-                    const atividadeText = removeAccents(cells[1].textContent.toLowerCase());    // Coluna Código de Atividade
-                    const atuacaoText = removeAccents(cells[2].textContent.toLowerCase());      // Coluna Campo de Atuação
+            // A linha fica visível se contiver TODAS as palavras digitadas
+            const bate = palavras.every(p => textoLinha.includes(p));
+            linha.style.display = bate ? '' : 'none';
+            if (bate) visiveis++;
+        });
 
-                    // Verifica se há uma correspondência exata em cada coluna conforme os filtros
-                    const cnaeMatch = cnaeWords.length === 0 || cnaeWords.includes(cnaeText);
-                    const atividadeMatch = atividadeWords.length === 0 || 
-                      atividadeWords.some(filter => {
-                          // Pega o texto da célula SEM o conteúdo entre parênteses
-                          const cellTextWithoutParentheses = atividadeText.split('(')[0].trim();
-                          // Compara com o filtro (ambos normalizados)
-                          return filter === cellTextWithoutParentheses;
-                      });
-                    const atuacaoMatch = atuacaoWords.length === 0 || atuacaoWords.includes(atuacaoText);
-
-                    // Exibe a linha se houver correspondência em todas as colunas conforme os filtros
-                    row.style.display = (cnaeMatch && atividadeMatch && atuacaoMatch) ? '' : 'none';
-                });
-            }
-
-            // Variáveis para armazenar os valores selecionados
-            let cnaeArray = [];
-            let atividadeArray = [];
-            let atuacaoArray = [];
-
-            // Inicializa os MultiSelectTags
-            new MultiSelectTag1('input_codigo_cnae', {
-                rounded: true,
-                shadow: false,
-                placeholder: 'Pesquisar CNAE',
-                tagColor: {
-                    textColor: '#041d36',
-                    borderColor: '#0a4b8c74',
-                    bgColor: '#a8d4ff8e',
-                },
-                onChange: function(cnae) {
-                    cnaeArray = cnae; // Atualiza o array de CNAE
-                }
-            });
-
-            new MultiSelectTag2('input_codigo_atividade', {
-                rounded: true,
-                shadow: false,
-                placeholder: 'Pesquisar Código da Atividade',
-                tagColor: {
-                    textColor: '#041d36',
-                    borderColor: '#0a4b8c74',
-                    bgColor: '#a8d4ff8e',
-                },
-                onChange: function(atividade) {
-                    atividadeArray = atividade; // Atualiza o array de atividade
-                }
-            });
-
-            new MultiSelectTag3('input_campo_atuacao', {
-                rounded: true,
-                shadow: false,
-                placeholder: 'Pesquisar Campo de Atuação',
-                tagColor: {
-                    textColor: '#041d36',
-                    borderColor: '#0a4b8c74',
-                    bgColor: '#a8d4ff8e',
-                },
-                onChange: function(atuacao) {
-                    atuacaoArray = atuacao; // Atualiza o array de campo de atuação
-                }
-            });
-
-            // Adiciona o evento de clique ao botão
-            // document.getElementById('btn_pesquisar_filtro').addEventListener('click', function() {
-            //     filtrarTabelaPorFiltro(cnaeArray, atividadeArray, atuacaoArray, 'tabela_cnae');
-            // });
-
-            // Adiciona o evento de clique ao botão
-            document.getElementById('btn_pesquisar_filtro').addEventListener('click', function() {
-                
-                // Verifica se todos os arrays estão vazios
-                if (cnaeArray.length === 0 && atividadeArray.length === 0 && atuacaoArray.length === 0) {
-                    
-                    // Se estiverem vazios, abre o modal de aviso usando jQuery (padrão do Bootstrap)
-                    $('#modalAvisoFiltro').modal('show');
-                    
-                } else {
-                    // Se pelo menos um item foi selecionado, executa a busca normalmente
-                    filtrarTabelaPorFiltro(cnaeArray, atividadeArray, atuacaoArray, 'tabela_cnae');
-                }
-                
-            });
+        atualizarContador(visiveis);
+    }
 
 
-            // --------------- limpar filtro  ---------------------------------------------------------------------------
+    // ── Filtragem por filtros (selects múltiplos) ────────────────────────────
+    // Verifica cada coluna individualmente:
+    //   - Se nenhum item daquela coluna foi selecionado → considera como "todos" (sem restrição)
+    //   - Se itens foram selecionados → a célula precisa bater exatamente com um deles
+    function filtrarPorFiltros() {
+        const cnaesSel      = cnaeArray.map(i => removerAcentos(i.value.toLowerCase()));
+        const atividadesSel = atividadeArray.map(i => removerAcentos(i.value.toLowerCase()));
+        const atuacoesSel   = atuacaoArray.map(i => removerAcentos(i.value.toLowerCase()));
 
-        </script>
+        const linhas = document.querySelectorAll('#tabela_cnae tbody tr:not(#linha-sem-resultado)');
+        let visiveis = 0;
 
-    </body>
+        linhas.forEach(linha => {
+            const celulas   = linha.querySelectorAll('td');
+            const textoCNAE = removerAcentos(celulas[0].textContent.toLowerCase());
+            const textoAtiv = removerAcentos(celulas[1].textContent.toLowerCase());
+            const textoAtua = removerAcentos(celulas[2].textContent.toLowerCase());
+
+            // Remove texto entre parênteses para comparação mais flexível
+            const textoCNAEsimples = textoCNAE.split('(')[0].trim();
+            const textoAtivsimples = textoAtiv.split('(')[0].trim();
+            const textoAtuasimples = textoAtua.split('(')[0].trim();
+
+            const bateCNAE = cnaesSel.length === 0      || cnaesSel.includes(textoCNAE) || cnaesSel.includes(textoCNAEsimples);
+            const bateAtiv = atividadesSel.length === 0 || atividadesSel.some(f => f === textoAtivsimples);
+            const bateAtua = atuacoesSel.length === 0   || atuacoesSel.includes(textoAtua) || atuacoesSel.includes(textoAtuasimples);
+
+            const visivel = bateCNAE && bateAtiv && bateAtua;
+            linha.style.display = visivel ? '' : 'none';
+            if (visivel) visiveis++;
+        });
+
+        atualizarContador(visiveis);
+    }
+
+
+    // ── Restaura a tabela (exibe todas as linhas) ────────────────────────────
+    function restaurarTabela() {
+        document.querySelectorAll('#tabela_cnae tbody tr:not(#linha-sem-resultado)')
+            .forEach(l => l.style.display = '');
+        atualizarContador(null);
+    }
+
+
+    // ── Atualiza o contador de resultados visíveis ───────────────────────────
+    function atualizarContador(visiveis) {
+        const el             = document.getElementById('contador-resultados');
+        const linhaSemResult = document.getElementById('linha-sem-resultado');
+
+        if (visiveis === null) {
+            el.textContent = '';
+            linhaSemResult.style.display = 'none';
+        } else if (visiveis === 0) {
+            el.textContent = 'Nenhum resultado encontrado.';
+            linhaSemResult.style.display = '';
+        } else {
+            const s = visiveis !== 1 ? 's' : '';
+            el.textContent = `${visiveis} resultado${s} encontrado${s}.`;
+            linhaSemResult.style.display = 'none';
+        }
+    }
+
+
+    // ── Fechar alerta do topo ───────────────────────────────────────────────
+    function fecharAlerta(btn) {
+        const alerta = btn.closest('.alert');
+        alerta.style.transition = 'opacity 0.3s';
+        alerta.style.opacity    = '0';
+        setTimeout(() => alerta.remove(), 300);
+    }
+
+
+    // ── Alternância entre painéis de busca ───────────────────────────────────
+    const btnFiltros      = document.getElementById('btn_busca_filtros');
+    const btnPalavraChave = document.getElementById('btn_busca_palavra_chave');
+    const divFiltros      = document.getElementById('div_busca_filtros');
+    const divPalavraChave = document.getElementById('div_busca_palavra_chave');
+
+    btnFiltros.addEventListener('click', () => {
+        const aberto = divFiltros.style.display !== 'none';
+        if (aberto) {
+            divFiltros.style.display = 'none';
+            btnFiltros.classList.remove('active');
+            restaurarTabela();
+        } else {
+            divFiltros.style.display      = 'block';
+            divPalavraChave.style.display = 'none';
+            btnFiltros.classList.add('active');
+            btnPalavraChave.classList.remove('active');
+            document.getElementById('input_busca_palavra_chave').value = '';
+            restaurarTabela();
+        }
+    });
+
+    btnPalavraChave.addEventListener('click', () => {
+        const aberto = divPalavraChave.style.display !== 'none';
+        if (aberto) {
+            divPalavraChave.style.display = 'none';
+            btnPalavraChave.classList.remove('active');
+            restaurarTabela();
+        } else {
+            divPalavraChave.style.display = 'block';
+            divFiltros.style.display      = 'none';
+            btnPalavraChave.classList.add('active');
+            btnFiltros.classList.remove('active');
+            restaurarTabela();
+        }
+    });
+
+
+    // ── Evento: digitação no campo de palavra-chave ──────────────────────────
+    document.getElementById('input_busca_palavra_chave')
+        .addEventListener('input', filtrarPorPalavraChave);
+
+    // Botão X para limpar o campo de palavra-chave
+    document.getElementById('btn_limpar_palavra_chave').addEventListener('click', () => {
+        document.getElementById('input_busca_palavra_chave').value = '';
+        restaurarTabela();
+    });
+
+
+    // ── Arrays que guardam os itens selecionados em cada filtro ─────────────
+    let cnaeArray      = [];
+    let atividadeArray = [];
+    let atuacaoArray   = [];
+
+
+    // ── Inicialização dos componentes MultiSelectTag ─────────────────────────
+    // Um único componente reutilizável (refatorado de 3 cópias para 1 classe).
+
+    new MultiSelectTag('input_codigo_cnae', {
+        rounded:     true,
+        shadow:      false,
+        placeholder: 'Pesquisar CNAE...',
+        tagColor: {
+            textColor:   '#041d36',
+            borderColor: '#0a4b8c74',
+            bgColor:     '#a8d4ff8e',
+        },
+        onChange: (selecionados) => {
+            cnaeArray = selecionados;
+        }
+    });
+
+    new MultiSelectTag('input_codigo_atividade', {
+        rounded:     true,
+        shadow:      false,
+        placeholder: 'Pesquisar Código da Atividade...',
+        tagColor: {
+            textColor:   '#041d36',
+            borderColor: '#0a4b8c74',
+            bgColor:     '#a8d4ff8e',
+        },
+        onChange: (selecionados) => {
+            atividadeArray = selecionados;
+        }
+    });
+
+    new MultiSelectTag('input_campo_atuacao', {
+        rounded:     true,
+        shadow:      false,
+        placeholder: 'Pesquisar Campo de Atuação...',
+        tagColor: {
+            textColor:   '#041d36',
+            borderColor: '#0a4b8c74',
+            bgColor:     '#a8d4ff8e',
+        },
+        onChange: (selecionados) => {
+            atuacaoArray = selecionados;
+        }
+    });
+
+
+    // ── Botão "Pesquisar" (filtros) ──────────────────────────────────────────
+    document.getElementById('btn_pesquisar_filtro').addEventListener('click', () => {
+        if (cnaeArray.length === 0 && atividadeArray.length === 0 && atuacaoArray.length === 0) {
+            // Exibe modal de aviso (Bootstrap 5)
+            const modal = new bootstrap.Modal(document.getElementById('modalAvisoFiltro'));
+            modal.show();
+        } else {
+            filtrarPorFiltros();
+        }
+    });
+
+
+    // ── Botão "Limpar filtros" ───────────────────────────────────────────────
+    // Recarrega a página para zerar todos os selects e restaurar a tabela.
+    document.getElementById('btn_limpar_filtro').addEventListener('click', () => {
+        location.reload();
+    });
+
+    </script>
+
+</body>
 </html>
